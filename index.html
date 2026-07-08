@@ -1,4 +1,3 @@
-google859657df7f8c46c8.html
 <!doctype html>
 <html lang="es">
   <head>
@@ -741,6 +740,32 @@ google859657df7f8c46c8.html
         font-weight: 400;
       }
 
+      .hero-credencial {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        max-width: 500px;
+        margin-bottom: 36px;
+      }
+
+      .hero-credencial::before {
+        content: "";
+        flex-shrink: 0;
+        width: 2px;
+        align-self: stretch;
+        background: var(--accent);
+        border-radius: 2px;
+      }
+
+      .hero-credencial span {
+        font-family: var(--font-display);
+        font-style: italic;
+        font-size: 0.98rem;
+        font-weight: 400;
+        color: var(--text-muted);
+        line-height: 1.5;
+      }
+
       .hero-botones {
         display: flex;
         gap: 12px;
@@ -871,6 +896,53 @@ google859657df7f8c46c8.html
       .logro-texto strong {
         color: var(--text);
         font-weight: 500;
+      }
+
+      /* ============================================
+           FRANJA — EXPERIENCIA (prueba social)
+        ============================================ */
+      .franja-experiencia {
+        background: var(--bg-elev);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 40px 5%;
+      }
+
+      .franja-experiencia-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 32px;
+        align-items: center;
+      }
+
+      .franja-experiencia-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      .franja-experiencia-label::before {
+        content: "//";
+        color: var(--text-dim);
+      }
+
+      .franja-experiencia-frase {
+        font-family: var(--font-display);
+        font-style: italic;
+        font-size: clamp(1.05rem, 2vw, 1.35rem);
+        font-weight: 400;
+        line-height: 1.5;
+        color: var(--text);
+        letter-spacing: -0.01em;
+        max-width: 780px;
       }
 
       /* ============================================
@@ -1671,7 +1743,7 @@ google859657df7f8c46c8.html
            CTA FINAL
         ============================================ */
       #cta-final {
-        padding: 100px 5%;
+        padding: 140px 5%;
         background: var(--bg);
         text-align: center;
         position: relative;
@@ -1707,19 +1779,11 @@ google859657df7f8c46c8.html
         color: var(--text);
         letter-spacing: -0.03em;
         line-height: 1.1;
-        margin-bottom: 20px;
+        margin-bottom: 0;
       }
 
       .cta-titulo .acento {
         color: var(--accent);
-      }
-
-      .cta-desc {
-        font-size: 1.08rem;
-        color: var(--text-muted);
-        max-width: 520px;
-        margin: 0 auto 40px;
-        line-height: 1.65;
       }
 
       /* ============================================
@@ -2039,9 +2103,19 @@ google859657df7f8c46c8.html
         #trayectoria,
         #proceso,
         #faq,
-        #contacto,
-        #cta-final {
+        #contacto {
           padding: 72px 5%;
+        }
+        #cta-final {
+          padding: 104px 5%;
+        }
+
+        .franja-experiencia {
+          padding: 32px 5%;
+        }
+        .franja-experiencia-inner {
+          grid-template-columns: 1fr;
+          gap: 12px;
         }
 
         .titulo-seccion {
@@ -2108,9 +2182,14 @@ google859657df7f8c46c8.html
         #trayectoria,
         #proceso,
         #faq,
-        #contacto,
-        #cta-final {
+        #contacto {
           padding: 60px 4%;
+        }
+        #cta-final {
+          padding: 92px 4%;
+        }
+        .franja-experiencia {
+          padding: 28px 4%;
         }
 
         .servicio-card {
@@ -2208,6 +2287,12 @@ google859657df7f8c46c8.html
               Ayudo a negocios de toda España a modernizar su presencia digital
               e integrar IA en sus procesos. Sin humo. Con criterio.
             </p>
+            <p class="hero-credencial">
+              <span
+                >He ejecutado estrategias reales con una de las marcas
+                referentes del marketing hispanohablante.</span
+              >
+            </p>
             <div class="hero-botones">
               <a href="#contacto" class="btn-primario">
                 Agendar llamada
@@ -2271,6 +2356,18 @@ google859657df7f8c46c8.html
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- FRANJA EXPERIENCIA (prueba social tras el hero) -->
+      <section class="franja-experiencia" aria-label="Experiencia">
+        <div class="franja-experiencia-inner animar">
+          <span class="franja-experiencia-label">Experiencia</span>
+          <p class="franja-experiencia-frase">
+            He ejecutado funnels, estrategia y campañas de ads dentro del
+            ecosistema de una de las marcas referentes del marketing
+            hispanohablante. Ahora aplico esa experiencia a negocios locales.
+          </p>
         </div>
       </section>
 
@@ -2891,35 +2988,9 @@ google859657df7f8c46c8.html
       <section id="cta-final" aria-labelledby="cta-heading">
         <div class="cta-glow"></div>
         <div class="contenedor">
-          <span class="etiqueta-seccion animar" style="justify-content: center"
-            >Último paso</span
-          >
           <h2 class="cta-titulo animar" id="cta-heading">
             El mercado <span class="acento">no espera</span>.
           </h2>
-          <p class="cta-desc animar animar-delay-1">
-            Mientras decides, otro negocio de tu sector ya está integrando lo
-            que aquí ves. Cuarenta minutos de llamada y sales con una idea
-            clara.
-          </p>
-          <a href="#contacto" class="btn-primario animar animar-delay-2">
-            Agendar llamada
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              aria-hidden="true"
-            >
-              <path
-                d="M3 8h10M9 4l4 4-4 4"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </a>
         </div>
       </section>
     </main>
