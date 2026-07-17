@@ -1001,19 +1001,43 @@
       }
 
       /* ============================================
-           SECCIÓN — SOBRE MÍ
+           SECCIÓN — SOBRE MÍ (sticky experiencial)
         ============================================ */
       #sobre-mi {
-        padding: 100px 5%;
         background: var(--bg);
       }
 
-      .sobre-mi-grid {
+      .sobre-mi-sticky-wrap {
+        position: relative;
+        height: 280vh;
+      }
+
+      .sobre-mi-sticky {
+        position: sticky;
+        top: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 100px 5%;
+        overflow: hidden;
+      }
+
+      .sobre-mi-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
         display: grid;
         grid-template-columns: 340px 1fr;
-        gap: 64px;
+        gap: 72px;
         align-items: start;
-        margin-top: 48px;
+      }
+
+      .sobre-mi-foto-col {
+        position: sticky;
+        top: 120px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
       }
 
       /* Foto sobre-mí destacada */
@@ -1088,14 +1112,82 @@
         filter: contrast(1.08) saturate(1.1);
       }
 
-      .sobre-mi-texto p {
+      /* Barra de progreso de lectura */
+      .sobre-mi-progress-track {
+        width: 100%;
+        height: 2px;
+        background: var(--border-strong);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .sobre-mi-progress-fill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, var(--accent), #60a5fa);
+        transition: width 0.15s linear;
+      }
+
+      /* Capítulos */
+      .sobre-mi-capitulos {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .sobre-mi-cap {
+        min-height: 60vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 16px;
+        padding: 48px 0;
+        border-bottom: 1px solid var(--border);
+        opacity: 0.2;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s var(--ease),
+          transform 0.6s var(--ease);
+      }
+
+      .sobre-mi-cap:first-child {
+        padding-top: 0;
+      }
+
+      .sobre-mi-cap:last-child {
+        border-bottom: none;
+      }
+
+      .sobre-mi-cap.activo {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .sobre-mi-cap-num {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        color: var(--accent);
+        font-weight: 500;
+        letter-spacing: 0.05em;
+      }
+
+      .sobre-mi-cap-titulo {
+        font-family: var(--font-display);
+        font-size: clamp(1.4rem, 2.5vw, 2rem);
+        font-weight: 600;
+        color: var(--text);
+        letter-spacing: -0.025em;
+        line-height: 1.12;
+      }
+
+      .sobre-mi-cap p {
         font-size: 1rem;
         color: var(--text-muted);
         line-height: 1.75;
-        margin-bottom: 20px;
+        max-width: 540px;
+        margin-bottom: 0;
       }
 
-      .sobre-mi-texto p strong {
+      .sobre-mi-cap p strong {
         color: var(--text);
         font-weight: 500;
       }
@@ -1105,11 +1197,11 @@
         background: var(--bg-card);
         border-radius: var(--radio);
         border-left: 3px solid var(--accent);
-        margin: 28px 0;
         font-size: 1rem;
         color: var(--text);
         line-height: 1.65;
         font-style: italic;
+        max-width: 540px;
       }
 
       /* ============================================
@@ -1740,24 +1832,31 @@
       }
 
       /* ============================================
-           CTA FINAL
+           CTA FINAL — FULLSCREEN
         ============================================ */
       #cta-final {
-        padding: 140px 5%;
-        background: var(--bg);
-        text-align: center;
         position: relative;
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: var(--bg);
         overflow: hidden;
+        padding: 0 5%;
       }
 
       .cta-glow {
         position: absolute;
-        width: 700px;
-        height: 700px;
+        width: 100vw;
+        height: 100vw;
+        max-width: 1000px;
+        max-height: 1000px;
         border-radius: 50%;
         background: radial-gradient(
           circle,
-          var(--accent-soft) 0%,
+          rgba(59, 130, 246, 0.14) 0%,
           transparent 60%
         );
         top: 50%;
@@ -1769,21 +1868,33 @@
       #cta-final .contenedor {
         position: relative;
         z-index: 1;
-        max-width: 720px;
+        max-width: none;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
       }
 
       .cta-titulo {
         font-family: var(--font-display);
-        font-size: clamp(2rem, 4.5vw, 3.5rem);
-        font-weight: 600;
+        font-size: clamp(3rem, 9vw, 7rem);
+        font-weight: 700;
         color: var(--text);
-        letter-spacing: -0.03em;
-        line-height: 1.1;
-        margin-bottom: 0;
+        letter-spacing: -0.04em;
+        line-height: 1.02;
+        max-width: 14ch;
       }
 
       .cta-titulo .acento {
         color: var(--accent);
+      }
+
+      .cta-sub {
+        font-size: clamp(1rem, 2vw, 1.35rem);
+        color: var(--text-muted);
+        max-width: 52ch;
+        line-height: 1.6;
       }
 
       /* ============================================
@@ -1957,6 +2068,88 @@
       }
 
       .menu-movil a:hover {
+        color: var(--accent);
+      }
+
+      /* ============================================
+           MARQUEE DE MARCA
+        ============================================ */
+      .marquee-banda {
+        overflow: hidden;
+        background: var(--bg);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 14px 0;
+        user-select: none;
+      }
+
+      .marquee-track {
+        display: inline-flex;
+        align-items: center;
+        gap: 0;
+        white-space: nowrap;
+        animation: marquee-loop 28s linear infinite;
+        will-change: transform;
+      }
+
+      .marquee-item {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+        padding: 0 28px;
+        transition: color 0.25s ease;
+      }
+
+      .marquee-item:hover {
+        color: var(--accent);
+      }
+
+      .marquee-sep {
+        color: var(--border-strong);
+        font-size: 0.9rem;
+        flex-shrink: 0;
+      }
+
+      @keyframes marquee-loop {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ============================================
+           HERO TÍTULO — REVEAL PALABRA A PALABRA
+        ============================================ */
+      .hero-palabra {
+        display: inline-block;
+        overflow: hidden;
+        vertical-align: bottom;
+        line-height: 1.08;
+        margin-right: 0.22em;
+      }
+
+      .hero-palabra-inner {
+        display: inline-block;
+        transform: translateY(105%);
+        opacity: 0;
+        will-change: transform, opacity;
+        transition:
+          transform 0.62s cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 0.42s ease;
+      }
+
+      .hero-palabra-inner.visible {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* Excepción: el span .acento dentro del h1 hereda el color */
+      .hero-titulo .acento .hero-palabra-inner {
         color: var(--accent);
       }
 
@@ -2219,14 +2412,1447 @@
           height: 52px;
         }
       }
+
+      /* ============================================
+           CAPA EXPERIENCIAL — GRANO
+        ============================================ */
+      .grain {
+        position: fixed;
+        inset: 0;
+        z-index: 9990;
+        pointer-events: none;
+        opacity: 0.04;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-repeat: repeat;
+      }
+
+      /* ============================================
+           NAVEGACIÓN LATERAL (dots)
+        ============================================ */
+      .side-nav {
+        position: fixed;
+        left: auto;
+        right: 26px;
+        top: 50%;
+        bottom: auto;
+        transform: translateY(-50%);
+        z-index: 700;
+        width: auto;
+        height: auto;
+        padding: 0;
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 18px;
+        align-items: center;
+      }
+
+      .side-nav-dot {
+        display: block;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        border: 1.5px solid var(--text-dim);
+        position: relative;
+        transition: all 0.35s var(--ease);
+      }
+
+      .side-nav-dot::after {
+        content: attr(data-label);
+        position: absolute;
+        right: 22px;
+        top: 50%;
+        transform: translateY(-50%) translateX(6px);
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        white-space: nowrap;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        padding: 4px 10px;
+        border-radius: var(--radio-pill);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s var(--ease);
+      }
+
+      .side-nav a:hover .side-nav-dot::after {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+      }
+
+      .side-nav a:hover .side-nav-dot {
+        border-color: var(--text-muted);
+      }
+
+      .side-nav a.active .side-nav-dot {
+        background: var(--accent);
+        border-color: var(--accent);
+        transform: scale(1.35);
+        box-shadow: 0 0 12px var(--accent-glow);
+      }
+
+      /* ============================================
+           CURSOR — ETIQUETA MAGNÉTICA
+        ============================================ */
+      #cursor-label {
+        position: fixed;
+        z-index: 9997;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #fff;
+        background: var(--accent);
+        padding: 4px 9px;
+        border-radius: var(--radio-pill);
+        opacity: 0;
+        white-space: nowrap;
+        transition:
+          opacity 0.2s ease,
+          transform 0.12s ease;
+      }
+
+      #cursor-label.visible {
+        opacity: 1;
+      }
+
+      /* ============================================
+           SCROLL CUE (hero)
+        ============================================ */
+      .scroll-cue {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        z-index: 2;
+      }
+
+      .scroll-cue-linea {
+        width: 1px;
+        height: 46px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          var(--accent) 60%,
+          transparent
+        );
+        animation: cue-desliza 2.2s var(--ease) infinite;
+        transform-origin: top;
+      }
+
+      .scroll-cue span {
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+        animation: cue-pulsa 2.2s ease-in-out infinite;
+      }
+
+      @keyframes cue-desliza {
+        0% {
+          transform: scaleY(0.3);
+          opacity: 0.2;
+        }
+        50% {
+          transform: scaleY(1);
+          opacity: 1;
+        }
+        100% {
+          transform: scaleY(0.3);
+          opacity: 0.2;
+        }
+      }
+
+      @keyframes cue-pulsa {
+        0%,
+        100% {
+          opacity: 0.35;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      /* ============================================
+           HERO — RETRATO CINEMÁTICO
+        ============================================ */
+      .perfil-retrato {
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        max-height: 360px;
+        border-radius: var(--radio-grande);
+        overflow: hidden;
+        margin-bottom: 24px;
+        position: relative;
+        isolation: isolate;
+        border: 1px solid var(--border-strong);
+        box-shadow:
+          0 0 0 4px var(--bg-card),
+          0 20px 50px -20px rgba(0, 0, 0, 0.7);
+        clip-path: inset(0 0 100% 0);
+        animation: retrato-revela 1.05s var(--ease) 0.35s forwards;
+      }
+
+      @keyframes retrato-revela {
+        to {
+          clip-path: inset(0 0 0 0);
+        }
+      }
+
+      .perfil-retrato img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 18%;
+        filter: contrast(1.05) saturate(1.05);
+        transition: transform 0.6s var(--ease);
+      }
+
+      .hero-tarjeta:hover .perfil-retrato img {
+        transform: scale(1.03);
+      }
+
+      .perfil-retrato::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(10, 10, 10, 0.55),
+          transparent 45%
+        );
+        z-index: 1;
+      }
+
+      /* ============================================
+           SECCIÓN — EXPERIENCIA (sticky storytelling)
+        ============================================ */
+      #experiencia {
+        background: var(--bg);
+        position: relative;
+      }
+
+      .experiencia-sticky-wrap {
+        position: relative;
+        height: 320vh;
+      }
+
+      .experiencia-sticky {
+        position: sticky;
+        top: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 100px 5%;
+        overflow: hidden;
+      }
+
+      .exp-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 72px;
+        align-items: center;
+      }
+
+      .exp-left {
+        position: relative;
+      }
+
+      .exp-chapter-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 22px;
+      }
+
+      .exp-chapter-label::before {
+        content: "//";
+        color: var(--text-dim);
+      }
+
+      .exp-titles {
+        display: grid;
+      }
+
+      .exp-title-item {
+        grid-area: 1 / 1;
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 4vw, 3.4rem);
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        line-height: 1.08;
+        color: var(--text);
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.55s var(--ease),
+          transform 0.55s var(--ease);
+        pointer-events: none;
+      }
+
+      .exp-title-item.active {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .exp-progress-track {
+        margin-top: 34px;
+        width: 100%;
+        max-width: 320px;
+        height: 2px;
+        background: var(--border-strong);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .exp-progress-fill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, var(--accent), #60a5fa);
+        transition: width 0.15s linear;
+      }
+
+      .exp-chapters {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .exp-chapter {
+        padding: 20px 24px;
+        border-left: 2px solid var(--border-strong);
+        border-radius: 0 var(--radio) var(--radio) 0;
+        opacity: 0.4;
+        transition:
+          opacity 0.4s var(--ease),
+          background 0.4s var(--ease),
+          border-color 0.4s var(--ease),
+          transform 0.4s var(--ease);
+      }
+
+      .exp-chapter.active {
+        opacity: 1;
+        background: var(--bg-card);
+        border-left-color: var(--accent);
+        transform: translateX(4px);
+      }
+
+      .exp-chapter-num {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        color: var(--accent);
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        margin-bottom: 8px;
+      }
+
+      .exp-chapter-name {
+        font-family: var(--font-display);
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: var(--text);
+        letter-spacing: -0.01em;
+        margin-bottom: 6px;
+      }
+
+      .exp-chapter-desc {
+        font-size: 0.92rem;
+        color: var(--text-muted);
+        line-height: 1.55;
+      }
+
+      /* ============================================
+           SECCIÓN — CONTRASTE
+        ============================================ */
+      #contraste {
+        padding: 100px 5%;
+        background: var(--bg);
+      }
+
+      .contraste-header {
+        max-width: 760px;
+        margin-bottom: 56px;
+      }
+
+      .contraste-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+      }
+
+      .contraste-col {
+        padding: 34px 32px;
+        border-radius: var(--radio-grande);
+        border: 1px solid var(--border);
+      }
+
+      .contraste-col.sin {
+        background: var(--bg-elev);
+        opacity: 0.72;
+        filter: saturate(0.7);
+      }
+
+      .contraste-col.con {
+        background: var(--bg-card);
+        border-color: var(--accent-soft);
+        box-shadow:
+          0 0 0 1px var(--accent-soft),
+          0 30px 80px -30px var(--accent-glow);
+      }
+
+      .contraste-col-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+      }
+
+      .contraste-col.sin .contraste-col-label {
+        color: var(--text-dim);
+      }
+
+      .contraste-col.con .contraste-col-label {
+        color: var(--accent);
+      }
+
+      .contraste-lista {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-bottom: 26px;
+      }
+
+      .contraste-lista li {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        font-size: 0.98rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+      }
+
+      .contraste-lista li::before {
+        content: "";
+        flex-shrink: 0;
+        width: 16px;
+        height: 16px;
+        margin-top: 3px;
+        border-radius: 50%;
+      }
+
+      .contraste-col.sin .contraste-lista li::before {
+        background: var(--bg-card);
+        border: 1.5px solid var(--border-strong);
+      }
+
+      .contraste-col.con .contraste-lista li {
+        color: var(--text);
+      }
+
+      .contraste-col.con .contraste-lista li::before {
+        background: var(--accent-soft);
+        border: 1.5px solid var(--accent);
+        box-shadow: inset 0 0 0 3px var(--bg-card);
+      }
+
+      .contraste-resultado {
+        font-family: var(--font-display);
+        font-size: 1.15rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding-top: 22px;
+        border-top: 1px solid var(--border);
+      }
+
+      .contraste-col.sin .contraste-resultado {
+        color: var(--text-dim);
+      }
+
+      .contraste-col.con .contraste-resultado {
+        color: var(--accent);
+      }
+
+      /* ============================================
+           SECCIÓN — DEMO (demostración de producto)
+        ============================================ */
+      #demo {
+        padding: 100px 5%;
+        background: var(--bg-elev);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        overflow: hidden;
+      }
+
+      .demo-header {
+        max-width: 760px;
+        margin-bottom: 44px;
+      }
+
+      .demo-wrap {
+        max-width: 1080px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .demo-tabs {
+        display: inline-flex;
+        gap: 4px;
+        padding: 4px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radio-pill);
+        margin-bottom: 26px;
+      }
+
+      .demo-tab {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        padding: 8px 18px;
+        border-radius: var(--radio-pill);
+        transition: all 0.3s var(--ease);
+      }
+
+      .demo-tab.active {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .demo-browser {
+        border-radius: var(--radio-grande);
+        overflow: hidden;
+        border: 1px solid var(--border-strong);
+        background: var(--bg-card);
+        box-shadow: var(--sombra-fuerte);
+        transition:
+          transform 0.4s var(--ease),
+          box-shadow 0.4s var(--ease);
+      }
+
+      .demo-browser:hover {
+        transform: translateY(-4px);
+        box-shadow:
+          0 40px 100px -30px rgba(0, 0, 0, 0.7),
+          0 0 60px -20px var(--accent-glow);
+      }
+
+      .demo-barra {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px 16px;
+        background: var(--bg-elev);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .demo-puntos {
+        display: flex;
+        gap: 7px;
+        flex-shrink: 0;
+      }
+
+      .demo-punto {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: var(--border-strong);
+      }
+
+      .demo-punto:nth-child(1) {
+        background: #ff5f57;
+      }
+      .demo-punto:nth-child(2) {
+        background: #febc2e;
+      }
+      .demo-punto:nth-child(3) {
+        background: #28c840;
+      }
+
+      .demo-url {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radio-pill);
+        padding: 6px 14px;
+        max-width: 340px;
+      }
+
+      .demo-url svg {
+        flex-shrink: 0;
+        color: var(--success);
+      }
+
+      .demo-viewport {
+        position: relative;
+        background: var(--bg);
+        transition:
+          filter 0.45s var(--ease),
+          opacity 0.45s var(--ease);
+      }
+
+      /* Mini landing (versión pulida "después") */
+      .demo-mini {
+        padding: 40px 44px 48px;
+        transition:
+          filter 0.45s var(--ease),
+          opacity 0.45s var(--ease);
+      }
+
+      .demo-mini-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 40px;
+      }
+
+      .demo-mini-logo {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1rem;
+        letter-spacing: -0.02em;
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .demo-mini-logo::before {
+        content: "";
+        width: 22px;
+        height: 22px;
+        border-radius: 7px;
+        background: var(--accent);
+      }
+
+      .demo-mini-menu {
+        display: flex;
+        gap: 20px;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      .demo-mini-menu span:last-child {
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .demo-mini-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: var(--accent-soft);
+        border: 1px solid var(--accent-soft);
+        padding: 6px 14px;
+        border-radius: var(--radio-pill);
+        margin-bottom: 22px;
+      }
+
+      .demo-mini-titulo {
+        font-family: var(--font-display);
+        font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.08;
+        color: var(--text);
+        max-width: 520px;
+        margin-bottom: 18px;
+      }
+
+      .demo-mini-titulo .acento {
+        color: var(--accent);
+      }
+
+      .demo-mini-sub {
+        font-size: 1rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+        max-width: 460px;
+        margin-bottom: 26px;
+      }
+
+      .demo-mini-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        font-size: 0.92rem;
+        padding: 13px 26px;
+        border-radius: var(--radio-pill);
+        margin-bottom: 40px;
+      }
+
+      .demo-mini-beneficios {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        border-top: 1px solid var(--border);
+        padding-top: 28px;
+      }
+
+      .demo-beneficio {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .demo-beneficio-check {
+        width: 24px;
+        height: 24px;
+        border-radius: 8px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 4px;
+      }
+
+      .demo-beneficio strong {
+        font-family: var(--font-display);
+        font-size: 0.98rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .demo-beneficio span {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+      }
+
+      /* Versión "antes" — genérica, sin ejecución */
+      .demo-viewport.antes .demo-mini {
+        font-family: Times, "Times New Roman", serif;
+        filter: grayscale(1);
+        opacity: 0.9;
+      }
+
+      .demo-viewport.antes .demo-mini-logo::before {
+        background: #888;
+        border-radius: 0;
+      }
+
+      .demo-viewport.antes .demo-mini-logo,
+      .demo-viewport.antes .demo-mini-titulo,
+      .demo-viewport.antes .demo-mini-beneficios strong {
+        font-family: Times, "Times New Roman", serif;
+        font-weight: 400;
+        letter-spacing: 0;
+        color: #c9c9c9;
+      }
+
+      .demo-viewport.antes .demo-mini-titulo .acento {
+        color: #c9c9c9;
+      }
+
+      .demo-viewport.antes .demo-mini-badge {
+        background: transparent;
+        border: 1px solid #555;
+        color: #999;
+        border-radius: 0;
+        text-transform: none;
+        font-family: Times, serif;
+      }
+
+      .demo-viewport.antes .demo-mini-cta {
+        background: transparent;
+        color: #6fa8ff;
+        text-decoration: underline;
+        padding: 0;
+        border-radius: 0;
+        font-weight: 400;
+      }
+
+      .demo-viewport.antes .demo-mini-menu span:last-child {
+        color: #999;
+        font-weight: 400;
+      }
+
+      /* Chips flotantes */
+      .demo-chips {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .demo-chip {
+        position: absolute;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        color: var(--text);
+        background: rgba(17, 17, 17, 0.85);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid var(--border-strong);
+        padding: 9px 16px;
+        border-radius: var(--radio-pill);
+        box-shadow: var(--sombra-media);
+      }
+
+      .demo-chip::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 8px var(--accent-glow);
+      }
+
+      .demo-chip.c1 {
+        top: 8%;
+        right: -10px;
+        animation: chip-flota 5s ease-in-out infinite;
+      }
+      .demo-chip.c2 {
+        top: 46%;
+        left: -16px;
+        animation: chip-flota 5s ease-in-out 0.7s infinite;
+      }
+      .demo-chip.c3 {
+        bottom: 10%;
+        right: 6%;
+        animation: chip-flota 5s ease-in-out 1.4s infinite;
+      }
+
+      @keyframes chip-flota {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+
+      /* ============================================
+           REVEAL CLIP-PATH
+        ============================================ */
+      .reveal-clip {
+        clip-path: inset(0 0 100% 0);
+        transition: clip-path 1s var(--ease);
+      }
+
+      .reveal-clip.visible {
+        clip-path: inset(0 0 0 0);
+      }
+
+      /* Reveal desde abajo — títulos de sección */
+      .reveal-up {
+        clip-path: inset(100% 0% 0% 0%);
+        transition: clip-path 1s var(--ease);
+      }
+
+      .reveal-up.visible {
+        clip-path: inset(0% 0% 0% 0%);
+      }
+
+      /* Reveal desde la izquierda — foto sobre mí */
+      .reveal-left {
+        clip-path: inset(0% 100% 0% 0%);
+        transition: clip-path 1.1s var(--ease);
+      }
+
+      .reveal-left.visible {
+        clip-path: inset(0% 0% 0% 0%);
+      }
+
+      /* Stagger en cascada — tarjetas de servicios */
+      .servicios-grid .servicio-card:nth-child(1) {
+        transition-delay: 0s;
+      }
+      .servicios-grid .servicio-card:nth-child(2) {
+        transition-delay: 0.12s;
+      }
+      .servicios-grid .servicio-card:nth-child(3) {
+        transition-delay: 0.24s;
+      }
+
+      /* ============================================
+           CTA FINAL — AMBIENTE
+        ============================================ */
+      .cta-glow {
+        animation: cta-respira 6s ease-in-out infinite;
+      }
+
+      @keyframes cta-respira {
+        0%,
+        100% {
+          opacity: 0.6;
+          transform: translate(-50%, -50%) scale(0.92);
+        }
+        50% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1.08);
+        }
+      }
+
+      .cta-grain {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.05;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
+        animation: cta-grain-mueve 8s steps(6) infinite;
+      }
+
+      @keyframes cta-grain-mueve {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(-6%, 4%);
+        }
+      }
+
+      /* ============================================
+           EXPERIENCIAL — RESPONSIVE
+        ============================================ */
+      @media (max-width: 1024px) {
+        .side-nav {
+          display: none;
+        }
+        .exp-inner {
+          gap: 40px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .grain {
+          opacity: 0.03;
+        }
+        .contraste-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        #contraste,
+        #demo {
+          padding: 72px 5%;
+        }
+
+        /* Experiencia: sin sticky, tarjetas en scroll normal */
+        .experiencia-sticky-wrap {
+          height: auto;
+        }
+        .experiencia-sticky {
+          position: static;
+          min-height: auto;
+          padding: 72px 5%;
+        }
+        .exp-inner {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+        .exp-left {
+          display: none;
+        }
+        .exp-chapter {
+          opacity: 1;
+          border-left-color: var(--accent);
+          background: var(--bg-card);
+        }
+        .exp-chapter-name {
+          font-size: 1.25rem;
+        }
+
+        /* Sobre mí: sin sticky en móvil */
+        .sobre-mi-sticky-wrap {
+          height: auto;
+        }
+        .sobre-mi-sticky {
+          position: static;
+          min-height: auto;
+          padding: 72px 5%;
+        }
+        .sobre-mi-inner {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .sobre-mi-foto-col {
+          position: static;
+        }
+        .about-photo {
+          max-width: 300px;
+        }
+        .sobre-mi-cap {
+          min-height: auto;
+          opacity: 1;
+          transform: none;
+          padding: 32px 0;
+        }
+
+        .demo-mini {
+          padding: 28px 22px 32px;
+        }
+        .demo-mini-menu {
+          display: none;
+        }
+        .demo-mini-beneficios {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+        .demo-chip {
+          display: none;
+        }
+        .perfil-retrato {
+          max-height: 300px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        #contraste,
+        #demo {
+          padding: 60px 4%;
+        }
+        .contraste-col {
+          padding: 28px 24px;
+        }
+        .demo-url {
+          font-size: 0.66rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .perfil-retrato {
+          clip-path: none;
+          animation: none;
+        }
+        .reveal-clip {
+          clip-path: none;
+        }
+        .cta-glow,
+        .cta-grain,
+        .scroll-cue-linea,
+        .scroll-cue span,
+        .demo-chip.c1,
+        .demo-chip.c2,
+        .demo-chip.c3 {
+          animation: none;
+        }
+        #preloader {
+          display: none;
+        }
+        .linea-seccion {
+          display: none;
+        }
+        .cta-cursor-parpadeo {
+          display: none;
+        }
+      }
+
+      /* ============================================
+           PRELOADER CINEMATOGRÁFICO
+        ============================================ */
+      #preloader {
+        position: fixed;
+        inset: 0;
+        background: #0a0a0a;
+        z-index: 99999;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+        padding: 40px 5%;
+        pointer-events: all;
+      }
+
+      #preloader.saliendo {
+        clip-path: inset(0 0 0 0);
+        animation: preloader-sale 0.9s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+      }
+
+      @keyframes preloader-sale {
+        to {
+          clip-path: inset(100% 0 0 0);
+        }
+      }
+
+      .preloader-numero {
+        font-family: var(--font-mono);
+        font-size: clamp(4rem, 12vw, 8rem);
+        font-weight: 400;
+        color: var(--text);
+        letter-spacing: -0.04em;
+        line-height: 1;
+        opacity: 0.9;
+        user-select: none;
+      }
+
+      .preloader-label {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+        margin-left: 6px;
+        align-self: flex-end;
+        padding-bottom: 0.9rem;
+      }
+
+      /* ============================================
+           LÍNEAS DE SECCIÓN (divisores animados)
+        ============================================ */
+      .linea-seccion {
+        width: 0%;
+        height: 1px;
+        background: var(--border-strong);
+        transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+        display: block;
+      }
+
+      .linea-seccion.visible {
+        width: 100%;
+      }
+
+      /* ============================================
+           SOBRE MÍ — FOTO DE FONDO FULLSCREEN
+        ============================================ */
+      .sobre-mi-foto-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .sobre-mi-foto-bg-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 30%;
+        filter: contrast(1.05) saturate(0.85);
+        display: block;
+      }
+
+      /* Overlay oscuro sobre la foto, más intenso en la mitad derecha */
+      .sobre-mi-foto-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          105deg,
+          rgba(10, 10, 10, 0.55) 0%,
+          rgba(10, 10, 10, 0.3) 40%,
+          rgba(10, 10, 10, 0.75) 65%,
+          rgba(10, 10, 10, 0.92) 100%
+        );
+        z-index: 1;
+      }
+
+      /* El sticky-wrap ahora es el contenedor del parallax */
+      #sobre-mi {
+        position: relative;
+      }
+
+      .sobre-mi-sticky {
+        position: relative;
+      }
+
+      /* Contenido encima del fondo */
+      .sobre-mi-inner {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* La foto-col en modo fondo: solo muestra barra de progreso */
+      .sobre-mi-foto-col {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding-bottom: 8px;
+      }
+
+      /* Ocultar el about-photo cuadrado cuando hay fondo */
+      .sobre-mi-foto-col .about-photo {
+        display: none;
+      }
+
+      /* ============================================
+           PROBLEMA — NÚMEROS GRANDES CINEMATOGRÁFICOS
+        ============================================ */
+      .problema-item-num {
+        font-family: var(--font-mono);
+        font-size: clamp(3.5rem, 7vw, 5.5rem);
+        font-weight: 300;
+        color: var(--accent);
+        letter-spacing: -0.05em;
+        line-height: 1;
+        margin-bottom: 16px;
+        opacity: 0.18;
+        transition: opacity 0.4s var(--ease);
+      }
+
+      .problema-item:hover .problema-item-num {
+        opacity: 0.65;
+      }
+
+      /* Los items del problema también con reveal lateral */
+      .problema-item {
+        padding-left: 0;
+        border-left: none;
+        border-top: 1px solid var(--border-strong);
+        padding-top: 32px;
+        transition: border-color 0.3s ease;
+      }
+
+      .problema-item:hover {
+        border-top-color: var(--accent);
+      }
+
+      .problema-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0;
+        border-bottom: 1px solid var(--border-strong);
+      }
+
+      .problema-item:nth-child(odd) {
+        border-right: 1px solid var(--border-strong);
+        padding-right: 40px;
+      }
+
+      .problema-item:nth-child(even) {
+        padding-left: 40px;
+      }
+
+      .problema-item:nth-child(3),
+      .problema-item:nth-child(4) {
+        padding-bottom: 0;
+      }
+
+      /* ============================================
+           CTA FINAL — CURSOR PARPADEANTE
+        ============================================ */
+      .cta-cursor-parpadeo {
+        display: inline-block;
+        width: 3px;
+        height: clamp(2.5rem, 7.5vw, 5.8rem);
+        background: var(--accent);
+        margin-left: 6px;
+        vertical-align: middle;
+        border-radius: 1px;
+        animation: parpadeo-cursor 1.1s ease-in-out infinite;
+        opacity: 0;
+      }
+
+      .cta-cursor-parpadeo.visible {
+        opacity: 1;
+      }
+
+      @keyframes parpadeo-cursor {
+        0%,
+        45% {
+          opacity: 1;
+        }
+        55%,
+        100% {
+          opacity: 0;
+        }
+      }
+
+      /* El botón del CTA aparece con retraso propio */
+      #cta-final .btn-primario {
+        opacity: 0;
+        transform: translateY(16px);
+        transition:
+          opacity 0.7s var(--ease),
+          transform 0.7s var(--ease),
+          background 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      #cta-final .btn-primario.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ============================================
+           MODO CINE — GSAP toma el control del hero
+        ============================================ */
+      body.cine .hero-texto,
+      body.cine .hero-visual {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+
+      body.cine .hero-titulo {
+        will-change: transform;
+      }
+
+      body.cine .hero-visual {
+        will-change: clip-path, opacity;
+      }
+
+      /* Los contenedores de sección con salida animada */
+      .salida-cine {
+        will-change: transform, opacity;
+      }
+
+      /* ============================================
+           CTA FINAL — IMAGEN DE FONDO (manos IA)
+        ============================================ */
+      .cta-imagen-fondo {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .cta-imagen-fondo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 40%;
+        opacity: 0.38;
+        display: block;
+        will-change: transform;
+      }
+
+      .cta-imagen-overlay {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 70% 60% at 50% 50%,
+          rgba(10, 10, 10, 0.25) 0%,
+          rgba(10, 10, 10, 0.82) 75%,
+          rgba(10, 10, 10, 0.96) 100%
+        );
+        z-index: 1;
+      }
+
+      /* ============================================
+           EXPERIENCIA — IMAGEN DE FONDO (setup)
+        ============================================ */
+      .exp-fondo {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .exp-fondo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 35%;
+        opacity: 0.16;
+        filter: saturate(0.7);
+        display: block;
+      }
+
+      .exp-fondo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          var(--bg) 0%,
+          rgba(10, 10, 10, 0.55) 25%,
+          rgba(10, 10, 10, 0.55) 75%,
+          var(--bg) 100%
+        );
+      }
+
+      .experiencia-sticky {
+        position: sticky;
+      }
+
+      .exp-inner {
+        position: relative;
+        z-index: 1;
+      }
     </style>
   </head>
   <body>
+    <!-- PRELOADER CINEMATOGRÁFICO -->
+    <div id="preloader" aria-hidden="true">
+      <div style="display: flex; align-items: flex-end; gap: 0">
+        <span class="preloader-numero" id="preloader-num">0</span>
+        <span class="preloader-label">%</span>
+      </div>
+    </div>
+
     <a href="#main" class="skip-link">Saltar al contenido</a>
+
+    <!-- Capa de grano (textura) -->
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- Navegación lateral (dots) -->
+    <nav class="side-nav" id="side-nav" aria-label="Navegación por secciones">
+      <a href="#inicio" aria-label="Inicio"
+        ><span class="side-nav-dot" data-label="Inicio"></span
+      ></a>
+      <a href="#experiencia" aria-label="Experiencia"
+        ><span class="side-nav-dot" data-label="Experiencia"></span
+      ></a>
+      <a href="#demo" aria-label="Demo"
+        ><span class="side-nav-dot" data-label="Demo"></span
+      ></a>
+      <a href="#servicios" aria-label="Servicios"
+        ><span class="side-nav-dot" data-label="Servicios"></span
+      ></a>
+      <a href="#proceso" aria-label="Proceso"
+        ><span class="side-nav-dot" data-label="Proceso"></span
+      ></a>
+      <a href="#contacto" aria-label="Contacto"
+        ><span class="side-nav-dot" data-label="Contacto"></span
+      ></a>
+    </nav>
 
     <!-- Cursor personalizado -->
     <div class="cursor" id="cursor"></div>
     <div class="cursor-seguidor" id="cursor-seguidor"></div>
+    <div id="cursor-label"></div>
 
     <!-- Progreso scroll -->
     <div class="progreso-scroll" id="progreso-scroll"></div>
@@ -2241,11 +3867,13 @@
         </div>
       </a>
       <ul class="nav-enlaces">
-        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#experiencia">Experiencia</a></li>
+        <li><a href="#demo">Demo</a></li>
         <li><a href="#servicios">Servicios</a></li>
         <li><a href="#proceso">Proceso</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contacto" class="nav-cta">Agendar llamada</a></li>
+        <li>
+          <a href="#contacto" class="nav-cta" data-cursor="Agenda">Agendar</a>
+        </li>
       </ul>
       <div
         class="menu-hamburguesa"
@@ -2261,10 +3889,10 @@
 
     <!-- Menú móvil -->
     <div class="menu-movil" id="menu-movil">
-      <a href="#sobre-mi" onclick="toggleMenu()">Sobre mí</a>
+      <a href="#experiencia" onclick="toggleMenu()">Experiencia</a>
+      <a href="#demo" onclick="toggleMenu()">Demo</a>
       <a href="#servicios" onclick="toggleMenu()">Servicios</a>
       <a href="#proceso" onclick="toggleMenu()">Proceso</a>
-      <a href="#faq" onclick="toggleMenu()">FAQ</a>
       <a href="#contacto" onclick="toggleMenu()">Agendar llamada</a>
     </div>
 
@@ -2294,7 +3922,7 @@
               >
             </p>
             <div class="hero-botones">
-              <a href="#contacto" class="btn-primario">
+              <a href="#contacto" class="btn-primario" data-cursor="Agenda">
                 Agendar llamada
                 <svg
                   width="16"
@@ -2312,20 +3940,22 @@
                   />
                 </svg>
               </a>
-              <a href="#servicios" class="btn-secundario">Ver servicios</a>
+              <a href="#demo" class="btn-secundario" data-cursor="Demo"
+                >Ver la experiencia</a
+              >
             </div>
           </div>
 
           <div class="hero-visual">
-            <div class="hero-tarjeta">
-              <div class="perfil-foto">
+            <div class="hero-tarjeta" data-cursor="Saúl">
+              <div class="perfil-retrato">
                 <picture>
                   <source srcset="img/saul-poveda.webp" type="image/webp" />
                   <img
                     src="img/saul-poveda.jpg"
                     alt="Retrato de Saúl Poveda"
-                    width="84"
-                    height="84"
+                    width="360"
+                    height="480"
                     loading="eager"
                     decoding="async"
                   />
@@ -2357,7 +3987,60 @@
             </div>
           </div>
         </div>
+
+        <div class="scroll-cue" aria-hidden="true">
+          <span class="scroll-cue-linea"></span>
+          <span>Scroll</span>
+        </div>
       </section>
+
+      <!-- Línea de sección animada -->
+      <div style="padding: 0 5%; overflow: hidden" aria-hidden="true">
+        <span class="linea-seccion"></span>
+      </div>
+
+      <!-- MARQUEE DE MARCA -->
+      <div class="marquee-banda" aria-hidden="true">
+        <div class="marquee-track">
+          <span class="marquee-item">IA aplicada</span
+          ><span class="marquee-sep">·</span>
+          <span class="marquee-item">Webs que convierten</span
+          ><span class="marquee-sep">·</span>
+          <span class="marquee-item">Consultoría estratégica</span
+          ><span class="marquee-sep">·</span>
+          <span class="marquee-item">Sin humo</span
+          ><span class="marquee-sep">·</span>
+          <span class="marquee-item">Automatización</span
+          ><span class="marquee-sep">·</span>
+          <span class="marquee-item">Con criterio</span
+          ><span class="marquee-sep">·</span>
+          <span class="marquee-item">Negocios locales</span
+          ><span class="marquee-sep">·</span>
+          <span class="marquee-item">Ejecución real</span
+          ><span class="marquee-sep">·</span>
+          <span class="marquee-item">España</span
+          ><span class="marquee-sep">·</span>
+          <!-- duplicado para loop sin salto -->
+          <span class="marquee-item">IA aplicada</span
+          ><span class="marquee-sep">·</span>
+          <span class="marquee-item">Webs que convierten</span
+          ><span class="marquee-sep">·</span>
+          <span class="marquee-item">Consultoría estratégica</span
+          ><span class="marquee-sep">·</span>
+          <span class="marquee-item">Sin humo</span
+          ><span class="marquee-sep">·</span>
+          <span class="marquee-item">Automatización</span
+          ><span class="marquee-sep">·</span>
+          <span class="marquee-item">Con criterio</span
+          ><span class="marquee-sep">·</span>
+          <span class="marquee-item">Negocios locales</span
+          ><span class="marquee-sep">·</span>
+          <span class="marquee-item">Ejecución real</span
+          ><span class="marquee-sep">·</span>
+          <span class="marquee-item">España</span
+          ><span class="marquee-sep">·</span>
+        </div>
+      </div>
 
       <!-- FRANJA EXPERIENCIA (prueba social tras el hero) -->
       <section class="franja-experiencia" aria-label="Experiencia">
@@ -2371,12 +4054,93 @@
         </div>
       </section>
 
+      <!-- EXPERIENCIA — STORYTELLING STICKY -->
+      <section id="experiencia" aria-labelledby="experiencia-heading">
+        <div class="experiencia-sticky-wrap" id="exp-wrap">
+          <div class="experiencia-sticky">
+            <div class="exp-fondo" aria-hidden="true">
+              <img
+                src="img/setup-dark.webp"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="exp-inner">
+              <div class="exp-left">
+                <span class="exp-chapter-label">Cómo pienso el trabajo</span>
+                <div class="exp-titles">
+                  <h2
+                    class="exp-title-item active"
+                    id="experiencia-heading"
+                    data-chapter="0"
+                  >
+                    Antes de tocar código,<br />hay una
+                    <span class="acento">decisión</span>.
+                  </h2>
+                  <h2 class="exp-title-item" data-chapter="1">
+                    Jerarquía, ritmo y una<br />web que
+                    <span class="acento">vende</span>.
+                  </h2>
+                  <h2 class="exp-title-item" data-chapter="2">
+                    La interacción demuestra<br />el
+                    <span class="acento">nivel</span> del trabajo.
+                  </h2>
+                  <h2 class="exp-title-item" data-chapter="3">
+                    No entrego el mapa.<br /><span class="acento">Conduzco</span
+                    >.
+                  </h2>
+                </div>
+                <div class="exp-progress-track" aria-hidden="true">
+                  <div class="exp-progress-fill" id="exp-progress"></div>
+                </div>
+              </div>
+
+              <div class="exp-chapters">
+                <div class="exp-chapter active" data-chapter="0">
+                  <div class="exp-chapter-num">01 · Criterio</div>
+                  <div class="exp-chapter-name">La decisión primero</div>
+                  <p class="exp-chapter-desc">
+                    Antes de tocar código, hay una decisión. Qué se construye,
+                    para quién y por qué. Sin esa base, lo demás es ruido.
+                  </p>
+                </div>
+                <div class="exp-chapter" data-chapter="1">
+                  <div class="exp-chapter-num">02 · Estructura</div>
+                  <div class="exp-chapter-name">Jerarquía y ritmo</div>
+                  <p class="exp-chapter-desc">
+                    Jerarquía, ritmo y una web que vende. Cada bloque tiene un
+                    propósito y guía al visitante hacia la acción.
+                  </p>
+                </div>
+                <div class="exp-chapter" data-chapter="2">
+                  <div class="exp-chapter-num">03 · Motion</div>
+                  <div class="exp-chapter-name">La interacción habla</div>
+                  <p class="exp-chapter-desc">
+                    La interacción demuestra el nivel del trabajo. El movimiento
+                    no decora: comunica cuidado y solvencia.
+                  </p>
+                </div>
+                <div class="exp-chapter" data-chapter="3">
+                  <div class="exp-chapter-num">04 · Ejecución</div>
+                  <div class="exp-chapter-name">Conduzco, no dibujo</div>
+                  <p class="exp-chapter-desc">
+                    No entrego el mapa. Conduzco. Implemento la parte técnica y
+                    me responsabilizo del resultado, no solo del plan.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- PROBLEMA -->
       <section id="problema" aria-labelledby="problema-heading">
         <div class="contenedor">
           <div class="problema-header animar">
             <span class="etiqueta-seccion">El contexto</span>
-            <h2 class="titulo-seccion" id="problema-heading">
+            <h2 class="titulo-seccion reveal-up" id="problema-heading">
               El coste de seguir <span class="acento">invisible</span>.
             </h2>
             <p class="subtitulo-seccion">
@@ -2423,55 +4187,137 @@
         </div>
       </section>
 
-      <!-- SOBRE MÍ -->
-      <section id="sobre-mi" aria-labelledby="sobre-mi-heading">
+      <!-- CONTRASTE -->
+      <section id="contraste" aria-labelledby="contraste-heading">
         <div class="contenedor">
-          <div class="animar">
-            <span class="etiqueta-seccion">Sobre mí</span>
-            <h2 class="titulo-seccion" id="sobre-mi-heading">
-              Ejecución antes que <span class="acento">teoría</span>.
+          <div class="contraste-header animar">
+            <span class="etiqueta-seccion">La diferencia</span>
+            <h2 class="titulo-seccion" id="contraste-heading">
+              La diferencia no es la herramienta. Es la
+              <span class="acento">ejecución</span>.
             </h2>
+            <p class="subtitulo-seccion">
+              Las mismas herramientas están al alcance de todos. Lo que cambia
+              el resultado es el criterio con el que se usan.
+            </p>
           </div>
 
-          <div class="sobre-mi-grid">
-            <div class="about-photo animar">
-              <picture>
-                <source srcset="img/saul-poveda.webp" type="image/webp" />
-                <img
-                  src="img/saul-poveda.jpg"
-                  alt="Retrato de Saúl Poveda, consultor de IA y desarrollo web para negocios locales en España"
-                  width="468"
-                  height="468"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </picture>
+          <div class="contraste-grid">
+            <div class="contraste-col sin animar">
+              <span class="contraste-col-label">Sin ejecución</span>
+              <ul class="contraste-lista">
+                <li>Presencia genérica</li>
+                <li>Procesos manuales</li>
+                <li>Decisiones a ciegas</li>
+                <li>Herramientas sueltas sin criterio</li>
+              </ul>
+              <div class="contraste-resultado">→ Invisible</div>
             </div>
 
-            <div class="sobre-mi-texto animar animar-delay-1">
-              <p>
-                Soy <strong>Saúl Poveda</strong>. Llevo años ejecutando
-                estrategias de marketing, funnels y campañas de ads dentro del
-                ecosistema de marketing hispanohablante de alto nivel.
-              </p>
-              <p>
-                He trabajado
-                <strong
-                  >en colaboración directa con una de las marcas referentes del
-                  marketing hispanohablante</strong
-                >, ejecutando lo que otros solo teorizan: estrategia, funnels y
-                campañas reales, con presupuesto real.
-              </p>
-              <div class="sobre-mi-cita">
-                "No creo en hacer cosas bonitas que no venden. Cada decisión
-                estratégica y cada línea de código están orientadas a un único
-                objetivo: hacer crecer tu negocio."
+            <div class="contraste-col con animar animar-delay-1">
+              <span class="contraste-col-label">Con Saúl</span>
+              <ul class="contraste-lista">
+                <li>Web que convierte</li>
+                <li>IA integrada en tus procesos</li>
+                <li>Criterio + implementación real</li>
+                <li>Decisiones basadas en datos</li>
+              </ul>
+              <div class="contraste-resultado">→ Visible y medible</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Línea de sección animada -->
+      <div style="padding: 0 5%; overflow: hidden" aria-hidden="true">
+        <span class="linea-seccion"></span>
+      </div>
+
+      <!-- SOBRE MÍ — Sticky experiencial con foto de fondo -->
+      <section id="sobre-mi" aria-labelledby="sobre-mi-heading">
+        <div class="sobre-mi-sticky-wrap" id="sobre-mi-wrap">
+          <div class="sobre-mi-sticky">
+            <!-- FOTO DE FONDO -->
+            <div class="sobre-mi-foto-bg" aria-hidden="true">
+              <img
+                src="img/oficina-dark.webp"
+                alt=""
+                class="sobre-mi-foto-bg-img"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="sobre-mi-foto-overlay"></div>
+            </div>
+
+            <div class="sobre-mi-inner">
+              <!-- Columna izquierda: solo barra de progreso -->
+              <div class="sobre-mi-foto-col">
+                <div
+                  class="about-photo reveal-left"
+                  data-cursor="Ejecución"
+                  style="display: none"
+                ></div>
+                <div class="sobre-mi-progress-track" aria-hidden="true">
+                  <div
+                    class="sobre-mi-progress-fill"
+                    id="sobre-mi-progress"
+                  ></div>
+                </div>
               </div>
-              <p>
-                Ahora aplico esa experiencia a negocios locales que necesitan
-                modernizarse sin perder tiempo probando lo que ya sé que
-                funciona. Web, IA y consultoría, en una sola persona.
-              </p>
+
+              <!-- Columna derecha: capítulos que fluyen -->
+              <div class="sobre-mi-capitulos">
+                <div class="sobre-mi-cap activo" data-cap="0">
+                  <span class="etiqueta-seccion">Sobre mí</span>
+                  <h2 class="titulo-seccion" id="sobre-mi-heading">
+                    Ejecución antes que <span class="acento">teoría</span>.
+                  </h2>
+                  <p>
+                    Soy <strong>Saúl Poveda</strong>. Llevo años ejecutando
+                    estrategias de marketing, funnels y campañas de ads dentro
+                    del ecosistema de marketing hispanohablante de alto nivel.
+                  </p>
+                </div>
+
+                <div class="sobre-mi-cap" data-cap="1">
+                  <span class="sobre-mi-cap-num">01 · Origen</span>
+                  <h3 class="sobre-mi-cap-titulo">
+                    Dentro del ecosistema real.
+                  </h3>
+                  <p>
+                    He trabajado
+                    <strong
+                      >en colaboración directa con una de las marcas referentes
+                      del marketing hispanohablante</strong
+                    >, ejecutando lo que otros solo teorizan: estrategia,
+                    funnels y campañas reales, con presupuesto real.
+                  </p>
+                </div>
+
+                <div class="sobre-mi-cap" data-cap="2">
+                  <span class="sobre-mi-cap-num">02 · Filosofía</span>
+                  <h3 class="sobre-mi-cap-titulo">
+                    Lo bonito que no vende no sirve.
+                  </h3>
+                  <div class="sobre-mi-cita">
+                    "No creo en hacer cosas bonitas que no venden. Cada decisión
+                    estratégica y cada línea de código están orientadas a un
+                    único objetivo: hacer crecer tu negocio."
+                  </div>
+                </div>
+
+                <div class="sobre-mi-cap" data-cap="3">
+                  <span class="sobre-mi-cap-num">03 · Ahora</span>
+                  <h3 class="sobre-mi-cap-titulo">
+                    Tu negocio, sin tiempo perdido.
+                  </h3>
+                  <p>
+                    Ahora aplico esa experiencia a negocios locales que
+                    necesitan modernizarse sin perder tiempo probando lo que ya
+                    sé que funciona. Web, IA y consultoría, en una sola persona.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -2482,7 +4328,7 @@
         <div class="contenedor">
           <div class="servicios-header animar">
             <span class="etiqueta-seccion">Qué hago</span>
-            <h2 class="titulo-seccion" id="servicios-heading">
+            <h2 class="titulo-seccion reveal-up" id="servicios-heading">
               Tres formas de modernizar <span class="acento">tu negocio</span>.
             </h2>
             <p class="subtitulo-seccion">
@@ -2550,6 +4396,185 @@
                 Menos tareas repetitivas. Más tiempo para lo que importa.
               </div>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- DEMO — DEMOSTRACIÓN DE PRODUCTO -->
+      <section id="demo" aria-labelledby="demo-heading">
+        <div class="contenedor">
+          <div class="demo-header animar">
+            <span class="etiqueta-seccion">Experiencia</span>
+            <h2 class="titulo-seccion" id="demo-heading">
+              Esto no se explica. Se <span class="acento">demuestra</span>.
+            </h2>
+            <p class="subtitulo-seccion">
+              Un ejemplo del tipo de web que construyo para un negocio local.
+              Cambia entre la versión genérica y la versión con ejecución.
+            </p>
+          </div>
+
+          <div class="demo-wrap animar animar-delay-1">
+            <div
+              class="demo-tabs"
+              role="tablist"
+              aria-label="Comparar versiones"
+            >
+              <button
+                class="demo-tab"
+                id="demo-tab-antes"
+                role="tab"
+                aria-selected="false"
+                data-demo="antes"
+              >
+                Antes
+              </button>
+              <button
+                class="demo-tab active"
+                id="demo-tab-despues"
+                role="tab"
+                aria-selected="true"
+                data-demo="despues"
+              >
+                Después
+              </button>
+            </div>
+
+            <div class="demo-browser" data-cursor="Interactúa">
+              <div class="demo-barra" aria-hidden="true">
+                <div class="demo-puntos">
+                  <span class="demo-punto"></span>
+                  <span class="demo-punto"></span>
+                  <span class="demo-punto"></span>
+                </div>
+                <div class="demo-url">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <rect
+                      x="4"
+                      y="10"
+                      width="16"
+                      height="10"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                    <path
+                      d="M8 10V7a4 4 0 0 1 8 0v3"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                  </svg>
+                  negocio-local.es
+                </div>
+              </div>
+
+              <div class="demo-viewport" id="demo-viewport">
+                <div class="demo-mini">
+                  <div class="demo-mini-nav">
+                    <span
+                      class="demo-mini-logo"
+                      data-despues="Clínica Sierra"
+                      data-antes="Clinica Sierra SL"
+                      >Clínica Sierra</span
+                    >
+                    <div class="demo-mini-menu">
+                      <span data-despues="Tratamientos" data-antes="Inicio"
+                        >Tratamientos</span
+                      >
+                      <span data-despues="Equipo" data-antes="Nosotros"
+                        >Equipo</span
+                      >
+                      <span data-despues="Reservar" data-antes="Contacto"
+                        >Reservar</span
+                      >
+                    </div>
+                  </div>
+
+                  <span
+                    class="demo-mini-badge"
+                    data-despues="Fisioterapia · Toledo"
+                    data-antes="Bienvenidos a nuestra web"
+                    >Fisioterapia · Toledo</span
+                  >
+                  <h3
+                    class="demo-mini-titulo"
+                    data-despues-html='Recupérate antes con un equipo que <span class="acento">sí escucha</span>.'
+                    data-antes-html="Bienvenido a la página web de nuestra clínica de fisioterapia."
+                  >
+                    Recupérate antes con un equipo que
+                    <span class="acento">sí escucha</span>.
+                  </h3>
+                  <p
+                    class="demo-mini-sub"
+                    data-despues="Primera valoración sin compromiso. Reserva online en menos de un minuto y elige el horario que te encaje."
+                    data-antes="Somos una clínica con años de experiencia al servicio del paciente. Estamos en Toledo. Llame para más información."
+                  >
+                    Primera valoración sin compromiso. Reserva online en menos
+                    de un minuto y elige el horario que te encaje.
+                  </p>
+                  <span
+                    class="demo-mini-cta"
+                    data-despues="Reservar valoración →"
+                    data-antes="pulse aquí"
+                    >Reservar valoración →</span
+                  >
+
+                  <div class="demo-mini-beneficios">
+                    <div class="demo-beneficio">
+                      <span class="demo-beneficio-check">✓</span>
+                      <strong data-despues="Reserva online" data-antes="Horario"
+                        >Reserva online</strong
+                      >
+                      <span
+                        data-despues="Agenda 24/7 sin llamadas."
+                        data-antes="Lunes a viernes de 9 a 14 y de 16 a 20."
+                        >Agenda 24/7 sin llamadas.</span
+                      >
+                    </div>
+                    <div class="demo-beneficio">
+                      <span class="demo-beneficio-check">✓</span>
+                      <strong
+                        data-despues="Respuesta con IA"
+                        data-antes="Teléfono"
+                        >Respuesta con IA</strong
+                      >
+                      <span
+                        data-despues="Dudas resueltas al instante."
+                        data-antes="Llame al número de la clínica."
+                        >Dudas resueltas al instante.</span
+                      >
+                    </div>
+                    <div class="demo-beneficio">
+                      <span class="demo-beneficio-check">✓</span>
+                      <strong
+                        data-despues="Recordatorios"
+                        data-antes="Ubicación"
+                        >Recordatorios</strong
+                      >
+                      <span
+                        data-despues="Menos ausencias, más agenda."
+                        data-antes="Estamos en el centro de Toledo."
+                        >Menos ausencias, más agenda.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="demo-chips" aria-hidden="true">
+                <span class="demo-chip c1 animar">Estructura</span>
+                <span class="demo-chip c2 animar animar-delay-1">Motion</span>
+                <span class="demo-chip c3 animar animar-delay-2"
+                  >Conversión</span
+                >
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -2632,7 +4657,7 @@
         <div class="contenedor">
           <div class="proceso-header animar">
             <span class="etiqueta-seccion">El proceso</span>
-            <h2 class="titulo-seccion" id="proceso-heading">
+            <h2 class="titulo-seccion reveal-up" id="proceso-heading">
               Cómo <span class="acento">trabajamos</span>.
             </h2>
             <p class="subtitulo-seccion">
@@ -2984,13 +5009,46 @@
         </div>
       </section>
 
-      <!-- CTA FINAL -->
+      <!-- CTA FINAL — Fullscreen -->
       <section id="cta-final" aria-labelledby="cta-heading">
+        <div class="cta-imagen-fondo" aria-hidden="true">
+          <img src="img/ia-manos.webp" alt="" loading="lazy" decoding="async" />
+          <div class="cta-imagen-overlay"></div>
+        </div>
         <div class="cta-glow"></div>
+        <div class="cta-grain" aria-hidden="true"></div>
         <div class="contenedor">
           <h2 class="cta-titulo animar" id="cta-heading">
-            El mercado <span class="acento">no espera</span>.
+            El mercado <span class="acento">no espera</span
+            ><span class="cta-cursor-parpadeo" aria-hidden="true"></span>.
           </h2>
+          <p class="cta-sub animar animar-delay-1">
+            Cuarenta minutos de llamada. Sin compromiso. Con una idea clara de
+            qué mover primero en tu negocio.
+          </p>
+          <a
+            href="#contacto"
+            class="btn-primario"
+            id="cta-btn"
+            data-cursor="Agenda"
+          >
+            Agendar llamada gratuita
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
         </div>
       </section>
     </main>
@@ -3090,6 +5148,7 @@
       /* ----- Cursor personalizado (desktop) ----- */
       const cursor = document.getElementById("cursor");
       const seguidor = document.getElementById("cursor-seguidor");
+      const cursorLabel = document.getElementById("cursor-label");
       let mouseX = 0,
         mouseY = 0,
         segX = 0,
@@ -3097,14 +5156,19 @@
 
       const esTactil = window.matchMedia("(hover: none)").matches;
       if (esTactil) {
-        cursor.style.display = "none";
-        seguidor.style.display = "none";
+        if (cursor) cursor.style.display = "none";
+        if (seguidor) seguidor.style.display = "none";
+        if (cursorLabel) cursorLabel.style.display = "none";
       } else {
         document.addEventListener("mousemove", (e) => {
           mouseX = e.clientX;
           mouseY = e.clientY;
           cursor.style.left = mouseX + "px";
           cursor.style.top = mouseY + "px";
+          if (cursorLabel) {
+            cursorLabel.style.left = mouseX + "px";
+            cursorLabel.style.top = mouseY + 26 + "px";
+          }
         });
 
         function animarSeguidor() {
@@ -3130,6 +5194,44 @@
             seguidor.style.height = "32px";
           });
         });
+
+        /* Etiqueta de cursor en elementos [data-cursor] */
+        document.querySelectorAll("[data-cursor]").forEach((el) => {
+          el.addEventListener("mouseenter", () => {
+            if (cursorLabel) {
+              cursorLabel.textContent = el.getAttribute("data-cursor");
+              cursorLabel.classList.add("visible");
+            }
+            seguidor.style.width = "60px";
+            seguidor.style.height = "60px";
+            seguidor.style.opacity = "0.7";
+          });
+          el.addEventListener("mouseleave", () => {
+            if (cursorLabel) cursorLabel.classList.remove("visible");
+            seguidor.style.width = "32px";
+            seguidor.style.height = "32px";
+            seguidor.style.opacity = "";
+          });
+        });
+
+        /* Imán en botones (desktop) */
+        document
+          .querySelectorAll(".btn-primario, .btn-secundario, .nav-cta")
+          .forEach((btn) => {
+            btn.addEventListener("mousemove", (e) => {
+              const r = btn.getBoundingClientRect();
+              const relX = e.clientX - (r.left + r.width / 2);
+              const relY = e.clientY - (r.top + r.height / 2);
+              const fuerza = 0.3;
+              const max = 8;
+              const tx = Math.max(-max, Math.min(max, relX * fuerza));
+              const ty = Math.max(-max, Math.min(max, relY * fuerza));
+              btn.style.transform = `translate(${tx}px, ${ty}px)`;
+            });
+            btn.addEventListener("mouseleave", () => {
+              btn.style.transform = "";
+            });
+          });
       }
 
       /* ----- Barra de progreso + nav scroll ----- */
@@ -3163,10 +5265,12 @@
           },
           { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
         );
-        document.querySelectorAll(".animar").forEach((el) => io.observe(el));
+        document
+          .querySelectorAll(".animar, .reveal-up, .reveal-left")
+          .forEach((el) => io.observe(el));
       } else {
         document
-          .querySelectorAll(".animar")
+          .querySelectorAll(".animar, .reveal-up, .reveal-left")
           .forEach((el) => el.classList.add("visible"));
       }
 
@@ -3262,18 +5366,604 @@
         });
       });
 
-      /* ----- Parallax sutil hero glow ----- */
+      /* ----- Parallax hero glow (scroll + ratón) ----- */
       const heroGlow = document.querySelector(".hero-glow");
+      const heroSeccion = document.getElementById("inicio");
+      const reducidoMov = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
       if (heroGlow) {
+        let gScroll = 0,
+          gmx = 0,
+          gmy = 0,
+          gmxTarget = 0,
+          gmyTarget = 0,
+          glowTicking = false;
+
+        const aplicarGlow = () => {
+          gmx += (gmxTarget - gmx) * 0.08;
+          gmy += (gmyTarget - gmy) * 0.08;
+          heroGlow.style.transform = `translate(${gmx}px, ${gScroll * 0.15 + gmy}px)`;
+          if (
+            Math.abs(gmxTarget - gmx) > 0.1 ||
+            Math.abs(gmyTarget - gmy) > 0.1
+          ) {
+            requestAnimationFrame(aplicarGlow);
+          } else {
+            glowTicking = false;
+          }
+        };
+
         window.addEventListener(
           "scroll",
           () => {
-            const scrollY = window.scrollY;
-            heroGlow.style.transform = `translateY(${scrollY * 0.15}px)`;
+            gScroll = window.scrollY;
+            heroGlow.style.transform = `translate(${gmx}px, ${gScroll * 0.15 + gmy}px)`;
           },
           { passive: true },
         );
+
+        if (!reducidoMov && !esTactil && heroSeccion) {
+          heroSeccion.addEventListener("mousemove", (e) => {
+            const r = heroSeccion.getBoundingClientRect();
+            gmxTarget = ((e.clientX - r.width / 2) / r.width) * 40;
+            gmyTarget = ((e.clientY - r.height / 2) / r.height) * 40;
+            if (!glowTicking) {
+              glowTicking = true;
+              requestAnimationFrame(aplicarGlow);
+            }
+          });
+        }
       }
+
+      /* ----- Navegación lateral (dots) — sección activa ----- */
+      (function () {
+        const sideLinks = Array.from(document.querySelectorAll(".side-nav a"));
+        if (!sideLinks.length || !("IntersectionObserver" in window)) return;
+        const mapa = new Map();
+        sideLinks.forEach((a) => {
+          const sec = document.querySelector(a.getAttribute("href"));
+          if (sec) mapa.set(sec, a);
+        });
+        const navIo = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                sideLinks.forEach((a) => a.classList.remove("active"));
+                const activo = mapa.get(entry.target);
+                if (activo) activo.classList.add("active");
+              }
+            });
+          },
+          { threshold: 0, rootMargin: "-45% 0px -45% 0px" },
+        );
+        mapa.forEach((_, sec) => navIo.observe(sec));
+      })();
+
+      /* ----- Experiencia: storytelling por scroll ----- */
+      (function () {
+        const wrap = document.getElementById("exp-wrap");
+        if (!wrap) return;
+        const titulos = wrap.querySelectorAll(".exp-title-item");
+        const capitulos = wrap.querySelectorAll(".exp-chapter");
+        const progreso = document.getElementById("exp-progress");
+        const total = titulos.length;
+        const esEscritorio = () => window.innerWidth > 768;
+
+        const activar = (i) => {
+          titulos.forEach((t, n) => t.classList.toggle("active", n === i));
+          capitulos.forEach((c, n) => c.classList.toggle("active", n === i));
+        };
+
+        const onScroll = () => {
+          if (!esEscritorio()) {
+            if (progreso) progreso.style.width = "0%";
+            return;
+          }
+          const rect = wrap.getBoundingClientRect();
+          const vh = window.innerHeight;
+          const recorrido = rect.height - vh;
+          let p = (0 - rect.top) / recorrido;
+          p = Math.max(0, Math.min(1, p));
+          if (progreso) progreso.style.width = p * 100 + "%";
+          let idx = Math.floor(p * total);
+          if (idx >= total) idx = total - 1;
+          activar(idx);
+        };
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll);
+        onScroll();
+      })();
+
+      /* ----- Demo: toggle Antes / Después ----- */
+      (function () {
+        const viewport = document.getElementById("demo-viewport");
+        const tabs = document.querySelectorAll(".demo-tab");
+        if (!viewport || !tabs.length) return;
+
+        const aplicarModo = (modo) => {
+          viewport.classList.toggle("antes", modo === "antes");
+          viewport.querySelectorAll("[data-antes]").forEach((el) => {
+            const valor =
+              modo === "antes"
+                ? el.getAttribute("data-antes")
+                : el.getAttribute("data-despues");
+            if (valor != null) el.textContent = valor;
+          });
+          viewport.querySelectorAll("[data-antes-html]").forEach((el) => {
+            const valor =
+              modo === "antes"
+                ? el.getAttribute("data-antes-html")
+                : el.getAttribute("data-despues-html");
+            if (valor != null) el.innerHTML = valor;
+          });
+        };
+
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", () => {
+            const modo = tab.getAttribute("data-demo");
+            tabs.forEach((t) => {
+              const activo = t === tab;
+              t.classList.toggle("active", activo);
+              t.setAttribute("aria-selected", activo ? "true" : "false");
+            });
+            aplicarModo(modo);
+          });
+        });
+      })();
+
+      /* ----- Proceso: micro-imán en hover (desktop) ----- */
+      if (!esTactil && !reducidoMov) {
+        document.querySelectorAll(".proceso-step").forEach((step) => {
+          step.addEventListener("mousemove", (e) => {
+            const r = step.getBoundingClientRect();
+            const relX = (e.clientX - (r.left + r.width / 2)) / r.width;
+            const relY = (e.clientY - (r.top + r.height / 2)) / r.height;
+            step.style.transform = `translate(${relX * 6}px, ${relY * 6 - 2}px)`;
+          });
+          step.addEventListener("mouseleave", () => {
+            step.style.transform = "";
+          });
+        });
+      }
+
+      /* ----- Sobre mí: sticky por capítulos ----- */
+      (function () {
+        const wrap = document.getElementById("sobre-mi-wrap");
+        if (!wrap) return;
+        const caps = wrap.querySelectorAll(".sobre-mi-cap");
+        const progreso = document.getElementById("sobre-mi-progress");
+        const total = caps.length;
+        const esEscritorio = () => window.innerWidth > 768;
+
+        const activar = (i) => {
+          caps.forEach((c, n) => c.classList.toggle("activo", n === i));
+        };
+
+        const onScroll = () => {
+          if (!esEscritorio()) {
+            caps.forEach((c) => c.classList.add("activo"));
+            if (progreso) progreso.style.width = "0%";
+            return;
+          }
+          const rect = wrap.getBoundingClientRect();
+          const vh = window.innerHeight;
+          const recorrido = rect.height - vh;
+          let p = (0 - rect.top) / recorrido;
+          p = Math.max(0, Math.min(1, p));
+          if (progreso) progreso.style.width = p * 100 + "%";
+          let idx = Math.floor(p * total);
+          if (idx >= total) idx = total - 1;
+          activar(idx);
+        };
+
+        activar(0);
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll);
+      })();
+
+      /* ----- Preloader cinematográfico ----- */
+      (function () {
+        const preloader = document.getElementById("preloader");
+        const numEl = document.getElementById("preloader-num");
+        if (!preloader || !numEl) return;
+
+        const reducido = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        if (reducido) {
+          preloader.style.display = "none";
+          return;
+        }
+
+        // Bloquear scroll mientras carga
+        document.body.style.overflow = "hidden";
+
+        let valor = 0;
+        const duracion = 1400;
+        const inicio = performance.now();
+
+        const actualizar = (ahora) => {
+          const t = Math.min((ahora - inicio) / duracion, 1);
+          // ease out cubic
+          const ease = 1 - Math.pow(1 - t, 3);
+          valor = Math.round(ease * 100);
+          numEl.textContent = valor;
+
+          if (t < 1) {
+            requestAnimationFrame(actualizar);
+          } else {
+            // Pausa dramática, luego barre hacia arriba
+            setTimeout(() => {
+              preloader.classList.add("saliendo");
+              preloader.addEventListener(
+                "animationend",
+                () => {
+                  preloader.style.display = "none";
+                  document.body.style.overflow = "";
+                  document.dispatchEvent(new CustomEvent("preloader-fin"));
+                },
+                { once: true },
+              );
+            }, 280);
+          }
+        };
+
+        requestAnimationFrame(actualizar);
+      })();
+
+      /* ----- Líneas de sección animadas ----- */
+      (function () {
+        const lineas = document.querySelectorAll(".linea-seccion");
+        if (!lineas.length || !("IntersectionObserver" in window)) return;
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.5 },
+        );
+        lineas.forEach((l) => io.observe(l));
+      })();
+
+      /* ----- CTA final: cursor parpadeante + botón retrasado ----- */
+      (function () {
+        const ctaSection = document.getElementById("cta-final");
+        const cursor = ctaSection
+          ? ctaSection.querySelector(".cta-cursor-parpadeo")
+          : null;
+        const btn = document.getElementById("cta-btn");
+        if (!ctaSection || !cursor || !btn) return;
+
+        const io = new IntersectionObserver(
+          ([entry]) => {
+            if (!entry.isIntersecting) return;
+            io.disconnect();
+            // Cursor aparece con el título
+            setTimeout(() => cursor.classList.add("visible"), 600);
+            // Botón aparece 800ms después
+            setTimeout(() => btn.classList.add("visible"), 1400);
+          },
+          { threshold: 0.4 },
+        );
+        io.observe(ctaSection);
+      })();
+
+      /* ----- Reveal palabra a palabra — hero h1 ----- */
+      (function () {
+        const reducido = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        if (reducido) return;
+
+        const titulo = document.querySelector(".hero-titulo");
+        if (!titulo) return;
+
+        // Recorre nodos hijos: texto plano y el span.acento
+        const nodos = Array.from(titulo.childNodes);
+        titulo.innerHTML = "";
+
+        nodos.forEach((nodo) => {
+          if (nodo.nodeType === Node.TEXT_NODE) {
+            // Partir por palabras conservando espacios como separador
+            const palabras = nodo.textContent.trim().split(/\s+/);
+            palabras.forEach((palabra) => {
+              if (!palabra) return;
+              const wrap = document.createElement("span");
+              wrap.className = "hero-palabra";
+              const inner = document.createElement("span");
+              inner.className = "hero-palabra-inner";
+              inner.textContent = palabra;
+              wrap.appendChild(inner);
+              titulo.appendChild(wrap);
+            });
+          } else if (
+            nodo.nodeType === Node.ELEMENT_NODE &&
+            nodo.classList.contains("acento")
+          ) {
+            // El span .acento: envolverlo igual pero preservar la clase
+            const texto = nodo.textContent.trim();
+            const wrap = document.createElement("span");
+            wrap.className = "hero-palabra";
+            const inner = document.createElement("span");
+            inner.className = "hero-palabra-inner acento";
+            inner.textContent = texto;
+            wrap.appendChild(inner);
+            titulo.appendChild(wrap);
+          }
+        });
+
+        // Stagger: espera a que el preloader termine (≈1700ms) + 75ms por palabra
+        const preloaderActivo =
+          !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+          document.getElementById("preloader") !== null;
+        const baseDelay = preloaderActivo ? 1750 : 400;
+
+        const inners = titulo.querySelectorAll(".hero-palabra-inner");
+        inners.forEach((el, i) => {
+          setTimeout(() => el.classList.add("visible"), baseDelay + i * 75);
+        });
+      })();
+    </script>
+
+    <!-- ============================================
+         MOTOR CINEMATOGRÁFICO — GSAP + ScrollTrigger
+         ============================================ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script>
+      (function () {
+        if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined")
+          return;
+        gsap.registerPlugin(ScrollTrigger);
+
+        const mm = gsap.matchMedia();
+
+        /* Con prefers-reduced-motion: la web queda estática, sin pin ni scrub */
+        mm.add("(prefers-reduced-motion: no-preference)", () => {
+          document.body.classList.add("cine");
+
+          /* ==========================================
+             1. HERO PINNED — H1 centrado → izquierda
+             ========================================== */
+          const titulo = document.querySelector(".hero-titulo");
+          const heroSec = document.getElementById("inicio");
+
+          if (titulo && heroSec) {
+            /* Estados iniciales: todo oculto excepto el H1 */
+            gsap.set(".hero-visual", {
+              opacity: 0,
+              clipPath: "inset(0% 0% 0% 100%)",
+            });
+            gsap.set(
+              [
+                ".hero-badge",
+                ".hero-descripcion",
+                ".hero-credencial",
+                ".hero-botones",
+              ],
+              { opacity: 0, y: 34 },
+            );
+
+            /* Al recalcular (resize), limpiar transform del título para medir bien */
+            ScrollTrigger.addEventListener("refreshInit", () => {
+              gsap.set(titulo, { clearProps: "transform" });
+            });
+
+            const heroTl = gsap.timeline({
+              scrollTrigger: {
+                trigger: "#inicio",
+                start: "top top",
+                end: "+=180%",
+                pin: true,
+                scrub: 0.6,
+                invalidateOnRefresh: true,
+                anticipatePin: 1,
+              },
+            });
+
+            /* Fase A (0 → 0.45): el H1 viaja del centro a su posición */
+            heroTl.fromTo(
+              titulo,
+              {
+                x: () => {
+                  const r = titulo.getBoundingClientRect();
+                  return window.innerWidth / 2 - (r.left + r.width / 2);
+                },
+                y: () => {
+                  const r = titulo.getBoundingClientRect();
+                  return window.innerHeight / 2 - (r.top + r.height / 2);
+                },
+                scale: 1.18,
+              },
+              {
+                x: 0,
+                y: 0,
+                scale: 1,
+                ease: "power2.inOut",
+                duration: 0.45,
+              },
+              0,
+            );
+
+            /* El scroll-cue se desvanece en cuanto empiezas a mover */
+            heroTl.to(".scroll-cue", { opacity: 0, duration: 0.1 }, 0);
+
+            /* Fase B (0.45 → 0.75): el contenido de texto entra en cascada */
+            heroTl.to(
+              ".hero-badge",
+              { opacity: 1, y: 0, duration: 0.12, ease: "power3.out" },
+              0.46,
+            );
+            heroTl.to(
+              ".hero-descripcion",
+              { opacity: 1, y: 0, duration: 0.12, ease: "power3.out" },
+              0.54,
+            );
+            heroTl.to(
+              ".hero-credencial",
+              { opacity: 1, y: 0, duration: 0.12, ease: "power3.out" },
+              0.62,
+            );
+            heroTl.to(
+              ".hero-botones",
+              { opacity: 1, y: 0, duration: 0.12, ease: "power3.out" },
+              0.7,
+            );
+
+            /* Fase C (0.5 → 0.95): la tarjeta con la foto se descorre desde la derecha */
+            heroTl.to(
+              ".hero-visual",
+              {
+                opacity: 1,
+                clipPath: "inset(0% 0% 0% 0%)",
+                duration: 0.45,
+                ease: "power3.out",
+              },
+              0.5,
+            );
+          }
+
+          /* ==========================================
+             2. SALIDAS DE SECCIÓN — todo entra Y sale
+             ========================================== */
+          const salidas = [
+            [".franja-experiencia", ".franja-experiencia-inner"],
+            ["#problema", ".contenedor"],
+            ["#contraste", ".contenedor"],
+            ["#trayectoria", ".contenedor"],
+            ["#demo", ".contenedor"],
+            ["#servicios", ".contenedor"],
+            ["#proceso", ".contenedor"],
+            ["#faq", ".contenedor"],
+            ["#contacto", ".contenedor"],
+          ];
+
+          salidas.forEach(([selSec, selInner]) => {
+            const sec = document.querySelector(selSec);
+            if (!sec) return;
+            const target = sec.querySelector(selInner) || sec;
+            target.classList.add("salida-cine");
+            gsap.to(target, {
+              opacity: 0,
+              y: -70,
+              ease: "none",
+              scrollTrigger: {
+                trigger: sec,
+                start: "bottom 38%",
+                end: "bottom 6%",
+                scrub: true,
+              },
+            });
+          });
+
+          /* Salidas de las secciones sticky (experiencia y sobre mí):
+             el contenido interior se desvanece al agotar su recorrido */
+          const salidasSticky = [
+            ["#exp-wrap", ".exp-inner"],
+            ["#sobre-mi-wrap", ".sobre-mi-inner"],
+          ];
+
+          salidasSticky.forEach(([selWrap, selInner]) => {
+            const wrap = document.querySelector(selWrap);
+            if (!wrap) return;
+            const inner = wrap.querySelector(selInner);
+            if (!inner) return;
+            inner.classList.add("salida-cine");
+            gsap.to(inner, {
+              opacity: 0,
+              y: -50,
+              ease: "none",
+              scrollTrigger: {
+                trigger: wrap,
+                start: "bottom 70%",
+                end: "bottom 30%",
+                scrub: true,
+              },
+            });
+          });
+
+          /* ==========================================
+             3. PROBLEMA — números con parallax propio
+             ========================================== */
+          document.querySelectorAll(".problema-item-num").forEach((num) => {
+            gsap.fromTo(
+              num,
+              { y: 40 },
+              {
+                y: -30,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: num.closest(".problema-item"),
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: true,
+                },
+              },
+            );
+          });
+
+          /* ==========================================
+             4. CTA FINAL — el título escala al entrar
+             ========================================== */
+          const ctaTitulo = document.querySelector(".cta-titulo");
+          if (ctaTitulo) {
+            gsap.fromTo(
+              ctaTitulo,
+              { scale: 0.92, opacity: 0.4 },
+              {
+                scale: 1,
+                opacity: 1,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: "#cta-final",
+                  start: "top 85%",
+                  end: "top 25%",
+                  scrub: true,
+                },
+              },
+            );
+          }
+
+          /* Ken Burns: la imagen de las manos hace zoom-out lento con el scroll */
+          const ctaImg = document.querySelector(".cta-imagen-fondo img");
+          if (ctaImg) {
+            gsap.fromTo(
+              ctaImg,
+              { scale: 1.18 },
+              {
+                scale: 1,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: "#cta-final",
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: true,
+                },
+              },
+            );
+          }
+
+          return () => {
+            document.body.classList.remove("cine");
+          };
+        });
+
+        /* Recalcular todo cuando el preloader termina (layout estable) */
+        document.addEventListener("preloader-fin", () => {
+          ScrollTrigger.refresh();
+        });
+
+        /* Fallback: si no hay preloader (reduced motion), recalcular al cargar */
+        window.addEventListener("load", () => {
+          ScrollTrigger.refresh();
+        });
+      })();
     </script>
   </body>
 </html>
