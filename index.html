@@ -719,12 +719,16 @@
 
       .hero-titulo {
         font-family: var(--font-display);
-        font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+        font-size: clamp(2.15rem, 5.2vw, 4.25rem);
         font-weight: 700;
-        line-height: 1.05;
+        line-height: 1.08;
         letter-spacing: -0.035em;
         color: var(--text);
         margin-bottom: 26px;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        hyphens: auto;
       }
 
       .hero-titulo .acento {
@@ -2268,19 +2272,27 @@
         }
 
         #inicio {
-          padding: 100px 5% 60px;
-          min-height: auto;
+          padding: 96px 5% 56px;
+          min-height: unset;
         }
         .hero-contenido {
           grid-template-columns: 1fr;
-          gap: 48px;
+          gap: 40px;
+          align-items: start;
         }
         .hero-visual {
-          max-width: 400px;
+          max-width: min(400px, 100%);
+          width: 100%;
           margin: 0 auto;
         }
         .hero-titulo {
-          font-size: clamp(2.2rem, 8vw, 3.5rem);
+          font-size: clamp(1.85rem, 7.5vw, 3rem);
+          line-height: 1.12;
+          margin-bottom: 20px;
+        }
+        .hero-descripcion,
+        .hero-credencial {
+          max-width: 100%;
         }
         .hero-botones {
           flex-direction: column;
@@ -2288,6 +2300,41 @@
         .hero-botones .btn-primario,
         .hero-botones .btn-secundario {
           width: 100%;
+          justify-content: center;
+        }
+        .scroll-cue {
+          display: none;
+        }
+        .nav-logo-rol {
+          display: none;
+        }
+        .problema-grid {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+        .problema-item:nth-child(odd),
+        .problema-item:nth-child(even) {
+          border-right: none;
+          padding-left: 0;
+          padding-right: 0;
+        }
+        .problema-item {
+          padding-top: 28px;
+          padding-bottom: 28px;
+        }
+        .problema-item-num {
+          font-size: clamp(2.6rem, 12vw, 3.8rem);
+        }
+        .cta-titulo {
+          font-size: clamp(2.2rem, 11vw, 3.8rem);
+          max-width: 12ch;
+        }
+        .menu-movil {
+          padding-top: calc(88px + env(safe-area-inset-top));
+          overflow-y: auto;
+        }
+        .side-nav {
+          display: none !important;
         }
 
         #problema,
@@ -2360,13 +2407,34 @@
       /* Móvil */
       @media (max-width: 480px) {
         #inicio {
-          padding: 90px 4% 48px;
+          padding: 84px 4% 48px;
         }
         .hero-titulo {
-          font-size: clamp(2rem, 10vw, 2.8rem);
+          font-size: clamp(1.7rem, 9vw, 2.35rem);
+          letter-spacing: -0.03em;
+        }
+        .hero-badge {
+          font-size: 0.65rem;
+          padding: 6px 12px;
+          max-width: 100%;
+          white-space: normal;
+          text-align: left;
+          line-height: 1.35;
         }
         .hero-tarjeta {
-          padding: 24px;
+          padding: 20px;
+        }
+        .perfil-retrato {
+          max-height: 260px;
+          aspect-ratio: 4 / 5;
+        }
+        .titulo-seccion {
+          font-size: clamp(1.55rem, 8vw, 2.1rem);
+        }
+        .btn-primario,
+        .btn-secundario {
+          padding: 14px 22px;
+          font-size: 0.9rem;
         }
 
         #problema,
@@ -3502,9 +3570,24 @@
         z-index: 99999;
         display: flex;
         align-items: flex-end;
-        justify-content: flex-start;
+        justify-content: space-between;
         padding: 40px 5%;
+        padding-bottom: max(40px, env(safe-area-inset-bottom));
         pointer-events: all;
+      }
+
+      .preloader-marca {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: var(--font-display);
+        font-size: clamp(2.4rem, 8vw, 5rem);
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        color: var(--text);
+        opacity: 0.92;
+        user-select: none;
       }
 
       #preloader.saliendo {
@@ -3716,7 +3799,7 @@
       }
 
       /* ============================================
-           MODO CINE — GSAP toma el control del hero
+           MODO CINE — scroll cinematográfico
         ============================================ */
       body.cine .hero-texto,
       body.cine .hero-visual {
@@ -3725,17 +3808,126 @@
         transform: none;
       }
 
+      /* Antes de la intro: todo oculto (evita flash del H1) */
+      body.cine:not(.hero-stage) .hero-badge,
+      body.cine:not(.hero-stage) .hero-descripcion,
+      body.cine:not(.hero-stage) .hero-credencial,
+      body.cine:not(.hero-stage) .hero-botones,
+      body.cine:not(.hero-stage) .hero-visual,
+      body.cine:not(.hero-stage) .scroll-cue,
+      body.cine:not(.hero-stage) .hero-titulo {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      body.cine .hero-palabra-inner {
+        transition: none !important;
+      }
+
+      body.cine .perfil-retrato {
+        clip-path: none;
+        animation: none;
+        opacity: 1;
+      }
+
+      body.cine .hero-visual,
       body.cine .hero-titulo {
-        will-change: transform;
+        will-change: transform, opacity, clip-path, filter;
       }
 
-      body.cine .hero-visual {
-        will-change: clip-path, opacity;
+      .bloque-cine {
+        will-change: transform, opacity, filter;
+        transform-origin: center center;
       }
 
-      /* Los contenedores de sección con salida animada */
       .salida-cine {
-        will-change: transform, opacity;
+        will-change: transform, opacity, filter;
+      }
+
+      #cine-wipe {
+        position: fixed;
+        inset: 0;
+        z-index: 850;
+        pointer-events: none;
+        background: var(--bg);
+        transform: scaleY(0);
+        transform-origin: top center;
+        opacity: 0;
+      }
+
+      .cine-vignette {
+        position: fixed;
+        inset: 0;
+        z-index: 5;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse 75% 65% at 50% 45%,
+          transparent 40%,
+          rgba(0, 0, 0, 0.45) 100%
+        );
+        opacity: 0.55;
+      }
+
+      body.cine #problema,
+      body.cine #contraste,
+      body.cine #servicios,
+      body.cine #demo,
+      body.cine #trayectoria,
+      body.cine #proceso,
+      body.cine #faq,
+      body.cine #contacto {
+        padding-top: 120px;
+        padding-bottom: 120px;
+      }
+
+      body.cine .franja-experiencia {
+        padding-top: 64px;
+        padding-bottom: 64px;
+      }
+
+      /* Solo un capítulo de experiencia visible a la vez */
+      body.cine .exp-title-item {
+        opacity: 0 !important;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      body.cine .exp-title-item.active {
+        opacity: 1 !important;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      /* Contenedor fluidos — evita desbordes en móvil */
+      .hero-contenido,
+      .contenedor,
+      .exp-inner,
+      .sobre-mi-inner,
+      .contacto-grid {
+        min-width: 0;
+      }
+
+      .titulo-seccion,
+      .cta-titulo,
+      .exp-title-item,
+      .sobre-mi-cap-titulo {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      /* Safe areas (iPhone notch / home indicator) */
+      .whatsapp-btn {
+        bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+        right: calc(28px + env(safe-area-inset-right, 0px));
+      }
+
+      nav {
+        padding-left: max(5%, env(safe-area-inset-left));
+        padding-right: max(5%, env(safe-area-inset-right));
+      }
+
+      #inicio {
+        min-height: 100svh;
+        padding-top: max(120px, calc(88px + env(safe-area-inset-top)));
       }
 
       /* ============================================
@@ -3814,18 +4006,31 @@
     </style>
   </head>
   <body>
+    <script>
+      /* Activa modo cine desde el primer paint (el preloader tapa el hero) */
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("js-motion");
+        document.body.classList.add("cine");
+      } else {
+        document.body.classList.add("hero-stage", "hero-ready");
+      }
+    </script>
     <!-- PRELOADER CINEMATOGRÁFICO -->
     <div id="preloader" aria-hidden="true">
+      <div class="preloader-marca">SP</div>
       <div style="display: flex; align-items: flex-end; gap: 0">
         <span class="preloader-numero" id="preloader-num">0</span>
         <span class="preloader-label">%</span>
       </div>
+      <span class="preloader-label" style="padding-bottom: 0.9rem">Cargando experiencia</span>
     </div>
 
     <a href="#main" class="skip-link">Saltar al contenido</a>
 
     <!-- Capa de grano (textura) -->
     <div class="grain" aria-hidden="true"></div>
+    <div class="cine-vignette" aria-hidden="true"></div>
+    <div id="cine-wipe" aria-hidden="true"></div>
 
     <!-- Navegación lateral (dots) -->
     <nav class="side-nav" id="side-nav" aria-label="Navegación por secciones">
@@ -5141,829 +5346,19 @@
     </a>
 
     <!-- JAVASCRIPT -->
-    <script>
-      // Año dinámico
-      document.getElementById("year").textContent = new Date().getFullYear();
-
-      /* ----- Cursor personalizado (desktop) ----- */
-      const cursor = document.getElementById("cursor");
-      const seguidor = document.getElementById("cursor-seguidor");
-      const cursorLabel = document.getElementById("cursor-label");
-      let mouseX = 0,
-        mouseY = 0,
-        segX = 0,
-        segY = 0;
-
-      const esTactil = window.matchMedia("(hover: none)").matches;
-      if (esTactil) {
-        if (cursor) cursor.style.display = "none";
-        if (seguidor) seguidor.style.display = "none";
-        if (cursorLabel) cursorLabel.style.display = "none";
-      } else {
-        document.addEventListener("mousemove", (e) => {
-          mouseX = e.clientX;
-          mouseY = e.clientY;
-          cursor.style.left = mouseX + "px";
-          cursor.style.top = mouseY + "px";
-          if (cursorLabel) {
-            cursorLabel.style.left = mouseX + "px";
-            cursorLabel.style.top = mouseY + 26 + "px";
-          }
-        });
-
-        function animarSeguidor() {
-          segX += (mouseX - segX) * 0.14;
-          segY += (mouseY - segY) * 0.14;
-          seguidor.style.left = segX + "px";
-          seguidor.style.top = segY + "px";
-          requestAnimationFrame(animarSeguidor);
-        }
-        animarSeguidor();
-
-        document.querySelectorAll("a, button, .servicio-card").forEach((el) => {
-          el.addEventListener("mouseenter", () => {
-            cursor.style.width = "16px";
-            cursor.style.height = "16px";
-            seguidor.style.width = "44px";
-            seguidor.style.height = "44px";
-          });
-          el.addEventListener("mouseleave", () => {
-            cursor.style.width = "10px";
-            cursor.style.height = "10px";
-            seguidor.style.width = "32px";
-            seguidor.style.height = "32px";
-          });
-        });
-
-        /* Etiqueta de cursor en elementos [data-cursor] */
-        document.querySelectorAll("[data-cursor]").forEach((el) => {
-          el.addEventListener("mouseenter", () => {
-            if (cursorLabel) {
-              cursorLabel.textContent = el.getAttribute("data-cursor");
-              cursorLabel.classList.add("visible");
-            }
-            seguidor.style.width = "60px";
-            seguidor.style.height = "60px";
-            seguidor.style.opacity = "0.7";
-          });
-          el.addEventListener("mouseleave", () => {
-            if (cursorLabel) cursorLabel.classList.remove("visible");
-            seguidor.style.width = "32px";
-            seguidor.style.height = "32px";
-            seguidor.style.opacity = "";
-          });
-        });
-
-        /* Imán en botones (desktop) */
-        document
-          .querySelectorAll(".btn-primario, .btn-secundario, .nav-cta")
-          .forEach((btn) => {
-            btn.addEventListener("mousemove", (e) => {
-              const r = btn.getBoundingClientRect();
-              const relX = e.clientX - (r.left + r.width / 2);
-              const relY = e.clientY - (r.top + r.height / 2);
-              const fuerza = 0.3;
-              const max = 8;
-              const tx = Math.max(-max, Math.min(max, relX * fuerza));
-              const ty = Math.max(-max, Math.min(max, relY * fuerza));
-              btn.style.transform = `translate(${tx}px, ${ty}px)`;
-            });
-            btn.addEventListener("mouseleave", () => {
-              btn.style.transform = "";
-            });
-          });
-      }
-
-      /* ----- Barra de progreso + nav scroll ----- */
-      const navbar = document.getElementById("navbar");
-      const progresoBar = document.getElementById("progreso-scroll");
-      window.addEventListener("scroll", () => {
-        const scrollTop = document.documentElement.scrollTop;
-        const scrollHeight =
-          document.documentElement.scrollHeight -
-          document.documentElement.clientHeight;
-        const progreso = (scrollTop / scrollHeight) * 100;
-        progresoBar.style.width = progreso + "%";
-
-        if (scrollTop > 20) {
-          navbar.classList.add("scrolled");
-        } else {
-          navbar.classList.remove("scrolled");
-        }
-      });
-
-      /* ----- Animaciones on scroll ----- */
-      if ("IntersectionObserver" in window) {
-        const io = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                io.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
-        );
-        document
-          .querySelectorAll(".animar, .reveal-up, .reveal-left")
-          .forEach((el) => io.observe(el));
-      } else {
-        document
-          .querySelectorAll(".animar, .reveal-up, .reveal-left")
-          .forEach((el) => el.classList.add("visible"));
-      }
-
-      /* ----- FAQ acordeón ----- */
-      document.querySelectorAll(".faq-question").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const item = btn.closest(".faq-item");
-          const answer = item.querySelector(".faq-answer");
-          const isOpen = item.classList.contains("open");
-
-          if (isOpen) {
-            item.classList.remove("open");
-            btn.setAttribute("aria-expanded", "false");
-            answer.style.maxHeight = "0px";
-          } else {
-            item.classList.add("open");
-            btn.setAttribute("aria-expanded", "true");
-            answer.style.maxHeight = answer.scrollHeight + "px";
-          }
-        });
-      });
-
-      /* ----- Menú móvil ----- */
-      function toggleMenu() {
-        const menu = document.getElementById("menu-movil");
-        const btn = document.getElementById("menu-btn");
-        menu.classList.toggle("abierto");
-        const spans = btn.querySelectorAll("span");
-        if (menu.classList.contains("abierto")) {
-          spans[0].style.transform = "rotate(45deg) translate(5px, 5px)";
-          spans[1].style.opacity = "0";
-          spans[2].style.transform = "rotate(-45deg) translate(5px, -5px)";
-        } else {
-          spans[0].style.transform = "";
-          spans[1].style.opacity = "";
-          spans[2].style.transform = "";
-        }
-      }
-      window.toggleMenu = toggleMenu;
-
-      /* ----- Formulario con Formspree ----- */
-      const formulario = document.getElementById("formulario-contacto");
-      if (formulario) {
-        formulario.addEventListener("submit", async function (e) {
-          e.preventDefault();
-          const btn = this.querySelector(".btn-enviar");
-          const textoOriginal = btn.innerHTML;
-
-          btn.innerHTML = "Enviando...";
-          btn.disabled = true;
-
-          try {
-            const respuesta = await fetch(this.action, {
-              method: "POST",
-              body: new FormData(this),
-              headers: { Accept: "application/json" },
-            });
-
-            if (respuesta.ok) {
-              btn.innerHTML = "✓ Mensaje enviado correctamente";
-              btn.style.background = "var(--success)";
-              this.reset();
-              setTimeout(() => {
-                btn.innerHTML = textoOriginal;
-                btn.style.background = "";
-                btn.disabled = false;
-              }, 4000);
-            } else {
-              throw new Error("Error en el envío");
-            }
-          } catch (error) {
-            btn.innerHTML = "✗ Error al enviar. Inténtalo de nuevo";
-            btn.style.background = "#ef4444";
-            btn.disabled = false;
-            setTimeout(() => {
-              btn.innerHTML = textoOriginal;
-              btn.style.background = "";
-            }, 3000);
-          }
-        });
-      }
-
-      /* ----- Scroll suave en enlaces internos ----- */
-      document.querySelectorAll('a[href^="#"]').forEach((enlace) => {
-        enlace.addEventListener("click", function (e) {
-          const href = this.getAttribute("href");
-          if (href === "#") return;
-          const destino = document.querySelector(href);
-          if (destino) {
-            e.preventDefault();
-            destino.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        });
-      });
-
-      /* ----- Parallax hero glow (scroll + ratón) ----- */
-      const heroGlow = document.querySelector(".hero-glow");
-      const heroSeccion = document.getElementById("inicio");
-      const reducidoMov = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
-      if (heroGlow) {
-        let gScroll = 0,
-          gmx = 0,
-          gmy = 0,
-          gmxTarget = 0,
-          gmyTarget = 0,
-          glowTicking = false;
-
-        const aplicarGlow = () => {
-          gmx += (gmxTarget - gmx) * 0.08;
-          gmy += (gmyTarget - gmy) * 0.08;
-          heroGlow.style.transform = `translate(${gmx}px, ${gScroll * 0.15 + gmy}px)`;
-          if (
-            Math.abs(gmxTarget - gmx) > 0.1 ||
-            Math.abs(gmyTarget - gmy) > 0.1
-          ) {
-            requestAnimationFrame(aplicarGlow);
-          } else {
-            glowTicking = false;
-          }
-        };
-
-        window.addEventListener(
-          "scroll",
-          () => {
-            gScroll = window.scrollY;
-            heroGlow.style.transform = `translate(${gmx}px, ${gScroll * 0.15 + gmy}px)`;
-          },
-          { passive: true },
-        );
-
-        if (!reducidoMov && !esTactil && heroSeccion) {
-          heroSeccion.addEventListener("mousemove", (e) => {
-            const r = heroSeccion.getBoundingClientRect();
-            gmxTarget = ((e.clientX - r.width / 2) / r.width) * 40;
-            gmyTarget = ((e.clientY - r.height / 2) / r.height) * 40;
-            if (!glowTicking) {
-              glowTicking = true;
-              requestAnimationFrame(aplicarGlow);
-            }
-          });
-        }
-      }
-
-      /* ----- Navegación lateral (dots) — sección activa ----- */
-      (function () {
-        const sideLinks = Array.from(document.querySelectorAll(".side-nav a"));
-        if (!sideLinks.length || !("IntersectionObserver" in window)) return;
-        const mapa = new Map();
-        sideLinks.forEach((a) => {
-          const sec = document.querySelector(a.getAttribute("href"));
-          if (sec) mapa.set(sec, a);
-        });
-        const navIo = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                sideLinks.forEach((a) => a.classList.remove("active"));
-                const activo = mapa.get(entry.target);
-                if (activo) activo.classList.add("active");
-              }
-            });
-          },
-          { threshold: 0, rootMargin: "-45% 0px -45% 0px" },
-        );
-        mapa.forEach((_, sec) => navIo.observe(sec));
-      })();
-
-      /* ----- Experiencia: storytelling por scroll ----- */
-      (function () {
-        const wrap = document.getElementById("exp-wrap");
-        if (!wrap) return;
-        const titulos = wrap.querySelectorAll(".exp-title-item");
-        const capitulos = wrap.querySelectorAll(".exp-chapter");
-        const progreso = document.getElementById("exp-progress");
-        const total = titulos.length;
-        const esEscritorio = () => window.innerWidth > 768;
-
-        const activar = (i) => {
-          titulos.forEach((t, n) => t.classList.toggle("active", n === i));
-          capitulos.forEach((c, n) => c.classList.toggle("active", n === i));
-        };
-
-        const onScroll = () => {
-          if (!esEscritorio()) {
-            if (progreso) progreso.style.width = "0%";
-            return;
-          }
-          const rect = wrap.getBoundingClientRect();
-          const vh = window.innerHeight;
-          const recorrido = rect.height - vh;
-          let p = (0 - rect.top) / recorrido;
-          p = Math.max(0, Math.min(1, p));
-          if (progreso) progreso.style.width = p * 100 + "%";
-          let idx = Math.floor(p * total);
-          if (idx >= total) idx = total - 1;
-          activar(idx);
-        };
-
-        window.addEventListener("scroll", onScroll, { passive: true });
-        window.addEventListener("resize", onScroll);
-        onScroll();
-      })();
-
-      /* ----- Demo: toggle Antes / Después ----- */
-      (function () {
-        const viewport = document.getElementById("demo-viewport");
-        const tabs = document.querySelectorAll(".demo-tab");
-        if (!viewport || !tabs.length) return;
-
-        const aplicarModo = (modo) => {
-          viewport.classList.toggle("antes", modo === "antes");
-          viewport.querySelectorAll("[data-antes]").forEach((el) => {
-            const valor =
-              modo === "antes"
-                ? el.getAttribute("data-antes")
-                : el.getAttribute("data-despues");
-            if (valor != null) el.textContent = valor;
-          });
-          viewport.querySelectorAll("[data-antes-html]").forEach((el) => {
-            const valor =
-              modo === "antes"
-                ? el.getAttribute("data-antes-html")
-                : el.getAttribute("data-despues-html");
-            if (valor != null) el.innerHTML = valor;
-          });
-        };
-
-        tabs.forEach((tab) => {
-          tab.addEventListener("click", () => {
-            const modo = tab.getAttribute("data-demo");
-            tabs.forEach((t) => {
-              const activo = t === tab;
-              t.classList.toggle("active", activo);
-              t.setAttribute("aria-selected", activo ? "true" : "false");
-            });
-            aplicarModo(modo);
-          });
-        });
-      })();
-
-      /* ----- Proceso: micro-imán en hover (desktop) ----- */
-      if (!esTactil && !reducidoMov) {
-        document.querySelectorAll(".proceso-step").forEach((step) => {
-          step.addEventListener("mousemove", (e) => {
-            const r = step.getBoundingClientRect();
-            const relX = (e.clientX - (r.left + r.width / 2)) / r.width;
-            const relY = (e.clientY - (r.top + r.height / 2)) / r.height;
-            step.style.transform = `translate(${relX * 6}px, ${relY * 6 - 2}px)`;
-          });
-          step.addEventListener("mouseleave", () => {
-            step.style.transform = "";
-          });
-        });
-      }
-
-      /* ----- Sobre mí: sticky por capítulos ----- */
-      (function () {
-        const wrap = document.getElementById("sobre-mi-wrap");
-        if (!wrap) return;
-        const caps = wrap.querySelectorAll(".sobre-mi-cap");
-        const progreso = document.getElementById("sobre-mi-progress");
-        const total = caps.length;
-        const esEscritorio = () => window.innerWidth > 768;
-
-        const activar = (i) => {
-          caps.forEach((c, n) => c.classList.toggle("activo", n === i));
-        };
-
-        const onScroll = () => {
-          if (!esEscritorio()) {
-            caps.forEach((c) => c.classList.add("activo"));
-            if (progreso) progreso.style.width = "0%";
-            return;
-          }
-          const rect = wrap.getBoundingClientRect();
-          const vh = window.innerHeight;
-          const recorrido = rect.height - vh;
-          let p = (0 - rect.top) / recorrido;
-          p = Math.max(0, Math.min(1, p));
-          if (progreso) progreso.style.width = p * 100 + "%";
-          let idx = Math.floor(p * total);
-          if (idx >= total) idx = total - 1;
-          activar(idx);
-        };
-
-        activar(0);
-        window.addEventListener("scroll", onScroll, { passive: true });
-        window.addEventListener("resize", onScroll);
-      })();
-
-      /* ----- Preloader cinematográfico ----- */
-      (function () {
-        const preloader = document.getElementById("preloader");
-        const numEl = document.getElementById("preloader-num");
-        if (!preloader || !numEl) return;
-
-        const reducido = window.matchMedia(
-          "(prefers-reduced-motion: reduce)",
-        ).matches;
-        if (reducido) {
-          preloader.style.display = "none";
-          return;
-        }
-
-        // Bloquear scroll mientras carga
-        document.body.style.overflow = "hidden";
-
-        let valor = 0;
-        const duracion = 1400;
-        const inicio = performance.now();
-
-        const actualizar = (ahora) => {
-          const t = Math.min((ahora - inicio) / duracion, 1);
-          // ease out cubic
-          const ease = 1 - Math.pow(1 - t, 3);
-          valor = Math.round(ease * 100);
-          numEl.textContent = valor;
-
-          if (t < 1) {
-            requestAnimationFrame(actualizar);
-          } else {
-            // Pausa dramática, luego barre hacia arriba
-            setTimeout(() => {
-              preloader.classList.add("saliendo");
-              preloader.addEventListener(
-                "animationend",
-                () => {
-                  preloader.style.display = "none";
-                  document.body.style.overflow = "";
-                  document.dispatchEvent(new CustomEvent("preloader-fin"));
-                },
-                { once: true },
-              );
-            }, 280);
-          }
-        };
-
-        requestAnimationFrame(actualizar);
-      })();
-
-      /* ----- Líneas de sección animadas ----- */
-      (function () {
-        const lineas = document.querySelectorAll(".linea-seccion");
-        if (!lineas.length || !("IntersectionObserver" in window)) return;
-        const io = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                io.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.5 },
-        );
-        lineas.forEach((l) => io.observe(l));
-      })();
-
-      /* ----- CTA final: cursor parpadeante + botón retrasado ----- */
-      (function () {
-        const ctaSection = document.getElementById("cta-final");
-        const cursor = ctaSection
-          ? ctaSection.querySelector(".cta-cursor-parpadeo")
-          : null;
-        const btn = document.getElementById("cta-btn");
-        if (!ctaSection || !cursor || !btn) return;
-
-        const io = new IntersectionObserver(
-          ([entry]) => {
-            if (!entry.isIntersecting) return;
-            io.disconnect();
-            // Cursor aparece con el título
-            setTimeout(() => cursor.classList.add("visible"), 600);
-            // Botón aparece 800ms después
-            setTimeout(() => btn.classList.add("visible"), 1400);
-          },
-          { threshold: 0.4 },
-        );
-        io.observe(ctaSection);
-      })();
-
-      /* ----- Reveal palabra a palabra — hero h1 ----- */
-      (function () {
-        const reducido = window.matchMedia(
-          "(prefers-reduced-motion: reduce)",
-        ).matches;
-        if (reducido) return;
-
-        const titulo = document.querySelector(".hero-titulo");
-        if (!titulo) return;
-
-        // Recorre nodos hijos: texto plano y el span.acento
-        const nodos = Array.from(titulo.childNodes);
-        titulo.innerHTML = "";
-
-        nodos.forEach((nodo) => {
-          if (nodo.nodeType === Node.TEXT_NODE) {
-            // Partir por palabras conservando espacios como separador
-            const palabras = nodo.textContent.trim().split(/\s+/);
-            palabras.forEach((palabra) => {
-              if (!palabra) return;
-              const wrap = document.createElement("span");
-              wrap.className = "hero-palabra";
-              const inner = document.createElement("span");
-              inner.className = "hero-palabra-inner";
-              inner.textContent = palabra;
-              wrap.appendChild(inner);
-              titulo.appendChild(wrap);
-            });
-          } else if (
-            nodo.nodeType === Node.ELEMENT_NODE &&
-            nodo.classList.contains("acento")
-          ) {
-            // El span .acento: envolverlo igual pero preservar la clase
-            const texto = nodo.textContent.trim();
-            const wrap = document.createElement("span");
-            wrap.className = "hero-palabra";
-            const inner = document.createElement("span");
-            inner.className = "hero-palabra-inner acento";
-            inner.textContent = texto;
-            wrap.appendChild(inner);
-            titulo.appendChild(wrap);
-          }
-        });
-
-        // Stagger: espera a que el preloader termine (≈1700ms) + 75ms por palabra
-        const preloaderActivo =
-          !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
-          document.getElementById("preloader") !== null;
-        const baseDelay = preloaderActivo ? 1750 : 400;
-
-        const inners = titulo.querySelectorAll(".hero-palabra-inner");
-        inners.forEach((el, i) => {
-          setTimeout(() => el.classList.add("visible"), baseDelay + i * 75);
-        });
-      })();
-    </script>
+    <script src="js/main.js" defer></script>
 
     <!-- ============================================
          MOTOR CINEMATOGRÁFICO — GSAP + ScrollTrigger
+         Ideario: Fame / Active Theory / Alche / Sondaven
+         - Hero anclado: H1 en escena → composición completa
+         - Cada bloque ENTRA y SALE ligado al scroll
+         - Blur, escala, clip-path, wipe, stagger de piezas
          ============================================ -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script>
-      (function () {
-        if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined")
-          return;
-        gsap.registerPlugin(ScrollTrigger);
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <script src="js/cine.js" defer></script>
 
-        const mm = gsap.matchMedia();
 
-        /* Con prefers-reduced-motion: la web queda estática, sin pin ni scrub */
-        mm.add("(prefers-reduced-motion: no-preference)", () => {
-          document.body.classList.add("cine");
-
-          /* ==========================================
-             1. HERO PINNED — H1 centrado → izquierda
-             ========================================== */
-          const titulo = document.querySelector(".hero-titulo");
-          const heroSec = document.getElementById("inicio");
-
-          if (titulo && heroSec) {
-            /* Estados iniciales: todo oculto excepto el H1 */
-            gsap.set(".hero-visual", {
-              opacity: 0,
-              clipPath: "inset(0% 0% 0% 100%)",
-            });
-            gsap.set(
-              [
-                ".hero-badge",
-                ".hero-descripcion",
-                ".hero-credencial",
-                ".hero-botones",
-              ],
-              { opacity: 0, y: 34 },
-            );
-
-            /* Al recalcular (resize), limpiar transform del título para medir bien */
-            ScrollTrigger.addEventListener("refreshInit", () => {
-              gsap.set(titulo, { clearProps: "transform" });
-            });
-
-            const heroTl = gsap.timeline({
-              scrollTrigger: {
-                trigger: "#inicio",
-                start: "top top",
-                end: "+=180%",
-                pin: true,
-                scrub: 0.6,
-                invalidateOnRefresh: true,
-                anticipatePin: 1,
-              },
-            });
-
-            /* Fase A (0 → 0.45): el H1 viaja del centro a su posición */
-            heroTl.fromTo(
-              titulo,
-              {
-                x: () => {
-                  const r = titulo.getBoundingClientRect();
-                  return window.innerWidth / 2 - (r.left + r.width / 2);
-                },
-                y: () => {
-                  const r = titulo.getBoundingClientRect();
-                  return window.innerHeight / 2 - (r.top + r.height / 2);
-                },
-                scale: 1.18,
-              },
-              {
-                x: 0,
-                y: 0,
-                scale: 1,
-                ease: "power2.inOut",
-                duration: 0.45,
-              },
-              0,
-            );
-
-            /* El scroll-cue se desvanece en cuanto empiezas a mover */
-            heroTl.to(".scroll-cue", { opacity: 0, duration: 0.1 }, 0);
-
-            /* Fase B (0.45 → 0.75): el contenido de texto entra en cascada */
-            heroTl.to(
-              ".hero-badge",
-              { opacity: 1, y: 0, duration: 0.12, ease: "power3.out" },
-              0.46,
-            );
-            heroTl.to(
-              ".hero-descripcion",
-              { opacity: 1, y: 0, duration: 0.12, ease: "power3.out" },
-              0.54,
-            );
-            heroTl.to(
-              ".hero-credencial",
-              { opacity: 1, y: 0, duration: 0.12, ease: "power3.out" },
-              0.62,
-            );
-            heroTl.to(
-              ".hero-botones",
-              { opacity: 1, y: 0, duration: 0.12, ease: "power3.out" },
-              0.7,
-            );
-
-            /* Fase C (0.5 → 0.95): la tarjeta con la foto se descorre desde la derecha */
-            heroTl.to(
-              ".hero-visual",
-              {
-                opacity: 1,
-                clipPath: "inset(0% 0% 0% 0%)",
-                duration: 0.45,
-                ease: "power3.out",
-              },
-              0.5,
-            );
-          }
-
-          /* ==========================================
-             2. SALIDAS DE SECCIÓN — todo entra Y sale
-             ========================================== */
-          const salidas = [
-            [".franja-experiencia", ".franja-experiencia-inner"],
-            ["#problema", ".contenedor"],
-            ["#contraste", ".contenedor"],
-            ["#trayectoria", ".contenedor"],
-            ["#demo", ".contenedor"],
-            ["#servicios", ".contenedor"],
-            ["#proceso", ".contenedor"],
-            ["#faq", ".contenedor"],
-            ["#contacto", ".contenedor"],
-          ];
-
-          salidas.forEach(([selSec, selInner]) => {
-            const sec = document.querySelector(selSec);
-            if (!sec) return;
-            const target = sec.querySelector(selInner) || sec;
-            target.classList.add("salida-cine");
-            gsap.to(target, {
-              opacity: 0,
-              y: -70,
-              ease: "none",
-              scrollTrigger: {
-                trigger: sec,
-                start: "bottom 38%",
-                end: "bottom 6%",
-                scrub: true,
-              },
-            });
-          });
-
-          /* Salidas de las secciones sticky (experiencia y sobre mí):
-             el contenido interior se desvanece al agotar su recorrido */
-          const salidasSticky = [
-            ["#exp-wrap", ".exp-inner"],
-            ["#sobre-mi-wrap", ".sobre-mi-inner"],
-          ];
-
-          salidasSticky.forEach(([selWrap, selInner]) => {
-            const wrap = document.querySelector(selWrap);
-            if (!wrap) return;
-            const inner = wrap.querySelector(selInner);
-            if (!inner) return;
-            inner.classList.add("salida-cine");
-            gsap.to(inner, {
-              opacity: 0,
-              y: -50,
-              ease: "none",
-              scrollTrigger: {
-                trigger: wrap,
-                start: "bottom 70%",
-                end: "bottom 30%",
-                scrub: true,
-              },
-            });
-          });
-
-          /* ==========================================
-             3. PROBLEMA — números con parallax propio
-             ========================================== */
-          document.querySelectorAll(".problema-item-num").forEach((num) => {
-            gsap.fromTo(
-              num,
-              { y: 40 },
-              {
-                y: -30,
-                ease: "none",
-                scrollTrigger: {
-                  trigger: num.closest(".problema-item"),
-                  start: "top bottom",
-                  end: "bottom top",
-                  scrub: true,
-                },
-              },
-            );
-          });
-
-          /* ==========================================
-             4. CTA FINAL — el título escala al entrar
-             ========================================== */
-          const ctaTitulo = document.querySelector(".cta-titulo");
-          if (ctaTitulo) {
-            gsap.fromTo(
-              ctaTitulo,
-              { scale: 0.92, opacity: 0.4 },
-              {
-                scale: 1,
-                opacity: 1,
-                ease: "none",
-                scrollTrigger: {
-                  trigger: "#cta-final",
-                  start: "top 85%",
-                  end: "top 25%",
-                  scrub: true,
-                },
-              },
-            );
-          }
-
-          /* Ken Burns: la imagen de las manos hace zoom-out lento con el scroll */
-          const ctaImg = document.querySelector(".cta-imagen-fondo img");
-          if (ctaImg) {
-            gsap.fromTo(
-              ctaImg,
-              { scale: 1.18 },
-              {
-                scale: 1,
-                ease: "none",
-                scrollTrigger: {
-                  trigger: "#cta-final",
-                  start: "top bottom",
-                  end: "bottom top",
-                  scrub: true,
-                },
-              },
-            );
-          }
-
-          return () => {
-            document.body.classList.remove("cine");
-          };
-        });
-
-        /* Recalcular todo cuando el preloader termina (layout estable) */
-        document.addEventListener("preloader-fin", () => {
-          ScrollTrigger.refresh();
-        });
-
-        /* Fallback: si no hay preloader (reduced motion), recalcular al cargar */
-        window.addEventListener("load", () => {
-          ScrollTrigger.refresh();
-        });
-      })();
-    </script>
   </body>
 </html>
