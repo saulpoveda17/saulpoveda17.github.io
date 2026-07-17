@@ -558,15 +558,16 @@
           }
         });
 
-        // Si no hay animación, mostrar ya
-        if (reducido) {
+        // Si no hay animación o es móvil/tablet: mostrar ya (evita H1 invisible)
+        const esMovil = window.matchMedia("(max-width: 1023px)").matches;
+        if (reducido || esMovil) {
           titulo
             .querySelectorAll(".hero-palabra-inner")
             .forEach((el) => el.classList.add("visible"));
-          document.body.classList.add("hero-ready");
+          document.body.classList.add("hero-stage", "hero-ready");
           return;
         }
 
-        // El motor GSAP (o fallback) dispara la intro tras preloader-fin
+        // Desktop: el motor cine.js anima tras el preloader
         window.__heroPalabrasListas = true;
       })();

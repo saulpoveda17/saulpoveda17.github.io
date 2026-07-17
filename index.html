@@ -2254,6 +2254,44 @@
         }
       }
 
+      /* Tablet / móvil: H1 siempre legible (hasta 1023px) */
+      @media (max-width: 1023px) {
+        .hero-titulo {
+          max-width: 100%;
+          opacity: 1 !important;
+          visibility: visible !important;
+          transform: none !important;
+          pointer-events: auto !important;
+        }
+        .hero-palabra {
+          overflow: visible;
+          max-width: 100%;
+        }
+        .hero-palabra-inner,
+        .hero-palabra-inner.visible {
+          opacity: 1 !important;
+          transform: none !important;
+          visibility: visible !important;
+        }
+        body.cine .hero-titulo,
+        body.cine .hero-badge,
+        body.cine .hero-descripcion,
+        body.cine .hero-credencial,
+        body.cine .hero-botones,
+        body.cine .hero-visual,
+        body.cine .hero-contenido {
+          opacity: 1 !important;
+          visibility: visible !important;
+          pointer-events: auto !important;
+          filter: none !important;
+          transform: none !important;
+        }
+        body.cine:not(.hero-stage) .hero-titulo {
+          opacity: 1 !important;
+          pointer-events: auto !important;
+        }
+      }
+
       /* Tablet */
       @media (max-width: 768px) {
         nav {
@@ -2286,9 +2324,42 @@
           margin: 0 auto;
         }
         .hero-titulo {
-          font-size: clamp(1.85rem, 7.5vw, 3rem);
-          line-height: 1.12;
+          font-size: clamp(1.75rem, 7vw, 2.75rem);
+          line-height: 1.15;
           margin-bottom: 20px;
+          max-width: 100%;
+          opacity: 1 !important;
+          visibility: visible !important;
+          transform: none !important;
+          pointer-events: auto !important;
+        }
+        /* En móvil: palabras siempre visibles (sin clip que esconde el H1) */
+        .hero-palabra {
+          overflow: visible;
+          max-width: 100%;
+        }
+        .hero-palabra-inner,
+        .hero-palabra-inner.visible {
+          opacity: 1 !important;
+          transform: none !important;
+          visibility: visible !important;
+        }
+        body.cine .hero-titulo,
+        body.cine .hero-badge,
+        body.cine .hero-descripcion,
+        body.cine .hero-credencial,
+        body.cine .hero-botones,
+        body.cine .hero-visual {
+          opacity: 1 !important;
+          visibility: visible !important;
+          pointer-events: auto !important;
+          filter: none !important;
+          transform: none !important;
+        }
+        body.cine .hero-contenido {
+          opacity: 1 !important;
+          transform: none !important;
+          filter: none !important;
         }
         .hero-descripcion,
         .hero-credencial {
