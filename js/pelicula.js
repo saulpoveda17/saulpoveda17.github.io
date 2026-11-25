@@ -656,7 +656,7 @@
     var lap = $("#esc3 .laptop"), ls = $("#esc3 .lscreen"), stage = $("#esc3 .stage");
     var q = $("#esc3 .q"), url = $("#esc3 .url__t"), me = $("#esc3 .res--me"), ptr = $("#esc3 .pointer"), clk = $("#esc3 .click");
     var QUERY = "consultoría para mejorar mi negocio";
-    url.innerHTML = '<span class="u1">buscar</span><span class="u2" style="display:none">saulpoveda17.github.io</span>';
+    url.innerHTML = '<span class="u1">buscar</span><span class="u2" style="display:none">saulpoveda.com</span>';
     var typing = { n: 0 };
 
     function target() {
