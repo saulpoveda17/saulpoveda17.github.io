@@ -49,6 +49,7 @@ img, svg, canvas { display: block; max-width: 100%; }
 a { color: inherit; }
 button, input { font: inherit; color: inherit; }
 h1, h2, h3, p { margin: 0; }
+[hidden] { display: none !important; }
 .mono { font-family: var(--f-mono); letter-spacing: 0.02em; }
 .serif { font-family: var(--f-display); }
 em { font-family: var(--f-display); font-style: italic; font-weight: 400; color: var(--amber); }
