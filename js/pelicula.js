@@ -19,54 +19,48 @@
      Datos del diagnóstico
      --------------------------------------------------------- */
   var BIZ = {
-    clinica: {
-      label: "Clínica o centro de salud", noun: "tu clínica", nounCap: "Tu clínica", sign: "CLÍNICA", chart: "Citas por semana",
-      t: "Una agenda que se llena sola", d: "Reserva online con recordatorios automáticos para llenar huecos y reducir ausencias.",
-      notes: [["Nueva cita reservada", "Jueves · 18:15 · desde la web"], ["Recordatorios enviados", "12 pacientes de mañana, sin llamar a nadie"], ["Nueva reseña ★★★★★", "«Reservé en un minuto»"]]
+    ecommerce: {
+      label: "Tienda online (e-commerce)", noun: "tu tienda online", nounCap: "Tu tienda online",
+      t: "Rentabilidad por producto y por canal", d: "Saber qué productos y qué campañas dejan margen de verdad, y recuperar los carritos abandonados."
     },
-    hosteleria: {
-      label: "Restaurante, bar o cafetería", noun: "tu local", nounCap: "Tu local", sign: "RESTAURANTE", chart: "Reservas por semana",
-      t: "No perder mesas en pleno servicio", d: "Reservas y respuestas automáticas en WhatsApp e Instagram mientras tú estás en sala.",
-      notes: [["Nueva reserva", "Mesa para 4 · sábado 21:30"], ["Respondido por la IA", "«¿Tenéis opciones sin gluten?»"], ["Nueva reseña ★★★★★", "«Volveremos seguro»"]]
+    formacion: {
+      label: "Formación, cursos o infoproductos", noun: "tu negocio de formación", nounCap: "Tu negocio de formación",
+      t: "Un embudo que convierte", d: "Del primer contenido a la venta: captación, seguimiento y lanzamientos medidos paso a paso."
     },
-    gimnasio: {
-      label: "Gimnasio o centro deportivo", noun: "tu centro", nounCap: "Tu centro", sign: "GIMNASIO", chart: "Altas por semana",
-      t: "Altas y retención en piloto automático", d: "Clase de prueba con reserva online y avisos automáticos a quien deja de venir.",
-      notes: [["Nueva alta", "Plan trimestral · desde la web"], ["Clase de prueba reservada", "Lunes · 19:00"], ["Aviso automático enviado", "8 socios que llevan dos semanas sin venir"]]
-    },
-    comercio: {
-      label: "Tienda o comercio", noun: "tu tienda", nounCap: "Tu tienda", sign: "TIENDA", chart: "Pedidos por semana",
-      t: "Que te encuentren y te compren sin llamar", d: "Ficha de Google cuidada, catálogo claro y pedidos por WhatsApp.",
-      notes: [["Pedido por WhatsApp", "Recoger hoy a las 17:00"], ["Nueva visita desde el mapa", "«Cómo llegar» · hace 3 min"], ["Nueva reseña ★★★★★", "«Trato de diez»"]]
+    saas: {
+      label: "Software, app o SaaS", noun: "tu producto", nounCap: "Tu producto",
+      t: "Captar al cliente que se queda", d: "Medir coste de adquisición, activación y bajas para invertir solo en los canales que traen clientes rentables."
     },
     servicios: {
-      label: "Servicios profesionales", noun: "tu despacho", nounCap: "Tu despacho", sign: "ESTUDIO", chart: "Contactos por semana",
-      t: "Que lleguen clientes que encajan", d: "Una web que explica lo que haces, filtra y agenda la llamada sin ir y venir de correos.",
-      notes: [["Llamada agendada", "Cliente potencial · martes 10:30"], ["Presupuesto solicitado", "Desde el formulario de la web"], ["Seguimiento enviado", "Propuesta reenviada automáticamente"]]
+      label: "Agencia o servicios profesionales", noun: "tu negocio", nounCap: "Tu negocio",
+      t: "Clientes que llegan sin depender del boca a boca", d: "Una oferta clara, una vía de captación medible y un seguimiento que convierte contactos en ventas."
+    },
+    local: {
+      label: "Negocio local que quiere vender más online", noun: "tu negocio", nounCap: "Tu negocio",
+      t: "Que te encuentren y te elijan en internet", d: "Ficha de Google, campañas locales y una medición sencilla para saber cuántos clientes llegan desde internet."
     },
     otro: {
-      label: "Otro tipo de negocio", noun: "tu negocio", nounCap: "Tu negocio", sign: "TU NEGOCIO", chart: "Contactos por semana",
-      t: "Ordenar el camino del cliente", d: "Cómo te encuentran, cómo te contactan y cómo respondes. En ese orden.",
-      notes: [["Nuevo contacto", "Desde la web · hace 2 min"], ["Respondido al momento", "Pregunta frecuente resuelta por la IA"], ["Nueva reseña ★★★★★", "«Rápidos y claros»"]]
+      label: "Otro tipo de negocio", noun: "tu negocio", nounCap: "Tu negocio",
+      t: "Ordenar el camino del cliente", d: "Cómo te encuentran, por qué te compran y dónde se pierden por el camino. En ese orden."
     }
   };
   var PAIN = {
-    clientes: { label: "Entran pocos clientes nuevos", leak: "te cuesta que te encuentren y te elijan.", t: "Entender de dónde viene cada cliente", d: "Revisar por qué canal llega hoy cada cliente y reforzar el que ya funciona antes de abrir otros.", svc: "Consultoría estratégica" },
-    tiempo: { label: "Se me van las horas en mensajes y tareas repetidas", leak: "tu tiempo se va en tareas que se pueden automatizar.", t: "Recuperar horas cada semana", d: "Apuntar las preguntas y tareas que repites y automatizar con IA las que más horas te quitan.", svc: "Implementación de IA" },
-    web: { label: "Mi web no me trae clientes (o no tengo)", leak: "quien te busca no encuentra motivos para elegirte.", t: "Una web con un solo objetivo", d: "Rápida, pensada para el móvil y construida para que te contacten o reserven, no para decorar.", svc: "Página web profesional" },
-    rumbo: { label: "Hago muchas cosas y no sé qué funciona", leak: "falta un plan con números detrás.", t: "Decidir con datos", d: "Medir lo que ya haces para dejar lo que no funciona y priorizar lo que sí.", svc: "Consultoría estratégica" }
+    ads: { label: "Invierto en publicidad y no sale rentable", leak: "la publicidad gasta más de lo que devuelve.", t: "Auditar las campañas", d: "Revisar qué anuncios, públicos y productos venden de verdad, apagar lo que pierde dinero y reforzar lo que funciona.", svc: "Publicidad digital" },
+    datos: { label: "No sé qué funciona: me faltan datos claros", leak: "decides sin saber qué te trae las ventas.", t: "Medir lo que importa", d: "Montar la analítica bien y un panel sencillo con ventas, coste por cliente y retorno de cada canal.", svc: "Analítica y medición" },
+    estanco: { label: "La facturación lleva meses estancada", leak: "el negocio ha tocado techo con lo que hace hoy.", t: "Encontrar la palanca de crecimiento", d: "Revisar oferta, precios, canales y recurrencia para decidir qué mover primero y con qué objetivo.", svc: "Consultoría estratégica" },
+    conversion: { label: "Tengo visitas pero pocas ventas", leak: "las visitas se pierden antes de comprar.", t: "Arreglar el embudo", d: "Detectar en qué paso se va la gente (oferta, web, pago o seguimiento) y corregirlo por orden de impacto.", svc: "Estrategia digital" }
   };
   var GOAL = {
-    reservas: { label: "Más reservas y ventas", t: "Medir cada semana", d: "Contactos, reservas y ventas en un panel sencillo para saber qué acción trae resultados.", sub: "Las reservas entran mientras atiendes." },
-    tiempo: { label: "Recuperar mi tiempo", t: "Sacar lo repetitivo de tus manos", d: "Dejar en automático lo que no necesita tu criterio para que vuelvas a lo que solo puedes hacer tú.", sub: "Lo repetitivo ya no pasa por tus manos." },
-    crecer: { label: "Crecer con orden", t: "Hoja de ruta por trimestres", d: "Prioridades, plazos y presupuesto cerrado para crecer sin improvisar.", sub: "Cada decisión tiene un dato detrás." }
+    facturar: { label: "Facturar más", t: "Un objetivo de facturación a 90 días", d: "Cifra, plazo y las tres acciones que más acercan a ella, revisadas cada semana." },
+    rentable: { label: "Que la publicidad sea rentable", t: "Retorno por encima del coste", d: "Fijar el coste máximo por venta y optimizar las campañas por ventas, no por clics." },
+    datos: { label: "Decidir con datos", t: "Un panel que se entiende", d: "Las cinco cifras que importan, en un solo sitio y actualizadas, para decidir en minutos." }
   };
   var SETS = { biz: BIZ, pain: PAIN, goal: GOAL };
 
   /* ---------------------------------------------------------
      Estado (se recuerda en este navegador)
      --------------------------------------------------------- */
-  var KEY = "sp-diagnostico-v1";
+  var KEY = "sp-diagnostico-v2";
   var state = { biz: null, pain: null, goal: null };
   try {
     var saved = JSON.parse(localStorage.getItem(KEY) || "null");
@@ -76,44 +70,57 @@
   function complete() { return !!(state.biz && state.pain && state.goal); }
 
   /* ---------------------------------------------------------
-     Escena 5: copia de la fachada, que pasará a ser de día
+     Vídeos reales: se cargan al acercarse a cada escena.
+     En pantallas verticales se usa la versión vertical si existe.
      --------------------------------------------------------- */
-  var cam5 = $("#cam5");
-  var shop5 = null;
-  (function cloneShop() {
-    var src = $("#shop");
-    if (!src || !cam5) return;
-    var html = src.outerHTML
-      .replace(/id="([\w-]+)"/g, 'id="$1-b"')
-      .replace(/url\(#([\w-]+)\)/g, "url(#$1-b)");
-    cam5.innerHTML = '<div class="cam-day"></div>' + html;
-    shop5 = cam5.querySelector("svg");
-    shop5.setAttribute("aria-label", "La misma fachada, de día y con la persiana subida. Entran clientes y llegan reservas al móvil.");
-    var t1 = shop5.querySelector(".door-t");
-    var t2 = t1.cloneNode(true);
-    t2.textContent = "ABIERTO";
-    t2.setAttribute("fill", "#2f9e6c");
-    t2.setAttribute("opacity", "0");
-    t2.classList.remove("door-t");
-    t2.classList.add("door-t2");
-    t1.parentNode.appendChild(t2);
-  })();
+  var REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var PORTRAIT = matchMedia("(max-aspect-ratio: 4/5)").matches;
+  var unlocked = false;
+  $$("video[data-poster-v]").forEach(function (v) { if (PORTRAIT) v.poster = v.dataset.posterV; });
+  function prime(v) {
+    // iOS: un vídeo solo se deja mover con el scroll después de un play() iniciado por el usuario
+    if (!unlocked || "loop" in v.dataset) return;
+    var pr = v.play(); if (pr && pr.then) pr.then(function () { v.pause(); }).catch(function () {});
+  }
+  function loadVid(v) {
+    if (!v || v.dataset.ok) return;
+    var s = (PORTRAIT && v.dataset.srcV) || v.dataset.src;
+    if (!s) return;
+    v.dataset.ok = "1";
+    v.preload = "auto";
+    v.src = s;
+    try { v.load(); } catch (e) {}
+    prime(v);
+  }
+  function unlock() {
+    if (unlocked) return; unlocked = true;
+    $$("video[data-ok]:not([data-loop])").forEach(prime);
+  }
+  window.addEventListener("touchstart", unlock, { once: true, passive: true });
+  window.addEventListener("pointerdown", unlock, { once: true, passive: true });
 
-  var DAY = {
-    ".city": { fill: "#8399b1" }, ".facade": { fill: "#d6c4a6" }, ".cornice": { fill: "#b09f80" }, ".uw": { fill: "#a5bccd", opacity: 1 },
-    ".band": { fill: "#20262e" }, ".sign": { fill: "#f4efe6" }, ".walk": { fill: "#c2b394" }, ".curb": { fill: "#9d8f74" }, ".road": { fill: "#55585e" },
-    ".shutter-box": { fill: "#8b8f96" }, ".lamp rect": { fill: "#2d3138" }, ".lamp path:not(.cone)": { stroke: "#2d3138" }
-  };
-  function setDayStatic(svg) {
-    if (!svg) return;
-    Object.keys(DAY).forEach(function (sel) {
-      $$(sel, svg).forEach(function (el) { Object.keys(DAY[sel]).forEach(function (p) { el.setAttribute(p, DAY[sel][p]); }); });
-    });
-    [".sky-d", ".sun", ".crowd", ".clients", ".door-t2"].forEach(function (s) { $$(s, svg).forEach(function (e) { e.setAttribute("opacity", 1); }); });
-    [".stars", ".moon", ".city-win", ".wet", ".refl", ".cone", ".lamp-glow", ".ph-glow", ".door-t"].forEach(function (s) { $$(s, svg).forEach(function (e) { e.setAttribute("opacity", 0); }); });
-    var sh = $(".shutter", svg); if (sh) sh.setAttribute("transform", "translate(0 -370)");
-    var pos = [1205, 700, 1420];
-    $$(".walker", svg).forEach(function (w, i) { w.setAttribute("transform", "translate(" + pos[i] + " 0)"); });
+  if (!REDUCE) {
+    $$("video[data-eager]").forEach(loadVid);
+    if ("IntersectionObserver" in window) {
+      // Precarga: una pantalla y media antes de llegar a la escena
+      var near = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { $$("video[data-src]", e.target).forEach(loadVid); near.unobserve(e.target); } });
+      }, { rootMargin: "150% 0px" });
+      $$(".scene").forEach(function (s) { near.observe(s); });
+      // Los vídeos en bucle solo se reproducen cuando están en pantalla
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          var v = e.target;
+          if (e.isIntersecting) {
+            if (v.dataset.src) loadVid(v); else if (v.preload === "none") v.preload = "auto";
+            var pr = v.play(); if (pr && pr.catch) pr.catch(function () {});
+          } else v.pause();
+        });
+      }, { rootMargin: "200px 0px" });
+      $$("video[data-loop]").forEach(function (v) { io.observe(v); });
+    } else {
+      $$("video[data-src]").forEach(loadVid);
+    }
   }
 
   /* ---------------------------------------------------------
@@ -121,24 +128,8 @@
      --------------------------------------------------------- */
   function apply() {
     var b = BIZ[state.biz] || BIZ.otro;
-    var g = GOAL[state.goal];
     $$('[data-f="noun"]').forEach(function (e) { e.textContent = b.noun; });
     $$('[data-f="nounCap"]').forEach(function (e) { e.textContent = b.nounCap; });
-    $$('[data-f="chart"]').forEach(function (e) { e.textContent = b.chart; });
-    $$('[data-f="goalSub"]').forEach(function (e) { e.textContent = g ? g.sub : "Las reservas entran mientras atiendes."; });
-    if (shop5) {
-      var sign = $(".sign", shop5);
-      sign.textContent = b.sign;
-      var long = b.sign.length > 9;
-      sign.setAttribute("font-size", long ? 30 : 36);
-      sign.setAttribute("letter-spacing", long ? 9 : 14);
-    }
-    $$(".notes .note").forEach(function (n, i) {
-      var d = b.notes[i];
-      if (!d) return;
-      $("b", n).textContent = d[0];
-      $("span", n).textContent = d[1];
-    });
     var neg = $('input[name="negocio"]');
     if (neg && state.biz && !neg.dataset.touched) neg.value = state.biz === "otro" ? "" : b.label;
     var li = $("#call-diag-li");
@@ -484,23 +475,11 @@
   });
   $$('a[href^="#"]').forEach(function (a) { a.addEventListener("click", stop); });
 
-  // Encuadre de la fachada en pantallas verticales
-  function portrait() { return window.innerWidth / window.innerHeight < 0.8; }
-  function frameShops() {
-    var a = window.innerWidth / window.innerHeight;
-    var vb = "0 0 1600 900", par = "xMidYMid slice";
-    if (a < 0.8) { vb = "420 120 760 700"; par = "xMidYMid meet"; }
-    else if (a < 1.2) { var w = 900 * a * 1.15; vb = (800 - w / 2).toFixed(0) + " 0 " + w.toFixed(0) + " 900"; }
-    $$("svg.shop").forEach(function (s) { s.setAttribute("viewBox", vb); s.setAttribute("preserveAspectRatio", par); });
-  }
-  frameShops();
-  window.addEventListener("resize", frameShops);
 
   /* ---------------------------------------------------------
      Sin animación: estado de póster
      --------------------------------------------------------- */
   if (!CINE) {
-    setDayStatic(shop5);
     body.classList.add("is-film");
     buildMarks();
     onScroll();
@@ -535,6 +514,12 @@
   function tap(tl, el, x, y, at) {
     tl.set(el, { left: x, top: y }, at);
     tl.fromTo(el, { scale: 0.4, autoAlpha: 0.95 }, { scale: 1.5, autoAlpha: 0, duration: 0.035, ease: "power2.out" }, at);
+  }
+  function spark(tl, sc, at) {
+    var line = $(sc + " .kpi__line"), L = 260;
+    line.style.strokeDasharray = L;
+    tl.fromTo(line, { strokeDashoffset: L }, { strokeDashoffset: 0, duration: 0.12, ease: "power1.out" }, at);
+    tl.fromTo(sc + " .kpi__area", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.08 }, at + 0.06);
   }
   function offsetIn(el, anc) {
     var x = 0, y = 0;
@@ -577,180 +562,198 @@
   // El título se aleja al empezar el scroll
   gsap.to(".title__inner", { yPercent: -18, autoAlpha: 0, scrollTrigger: { trigger: "#inicio", start: "top top", end: "bottom 20%", scrub: true } });
 
+  /* ---------- Vídeo controlado por el scroll ---------- */
+  var scrubs = [];
+  function scrub(tl, video, at, dur, from, to) {
+    if (!video) return;
+    var o = { p: from || 0 };
+    tl.fromTo(o, { p: from || 0 }, { p: to === undefined ? 1 : to, duration: dur, ease: "none" }, at);
+    scrubs.push({ v: video, o: o });
+  }
+  gsap.ticker.add(function () {
+    for (var i = 0; i < scrubs.length; i++) {
+      var v = scrubs[i].v, d = v.duration;
+      if (!d || v.readyState < 1 || v.seeking) continue;
+      var t = Math.min(d - 0.04, Math.max(0, scrubs[i].o.p * d));
+      if (Math.abs(v.currentTime - t) > 0.02) { try { v.currentTime = t; } catch (e) {} }
+    }
+  });
+
   /* ---------- ESCENA 1 · El cierre ---------- */
   (function () {
-    var s = scene("#esc1", 380), tl = s.tl, svg = $("#shop");
-    var cam = $("#cam1");
-    tl.fromTo(cam, { scale: 1.02 }, { scale: function () { return portrait() ? 1.1 : 1.26; }, transformOrigin: "50% 66%", duration: 1, ease: "power1.inOut" }, 0);
-    tl.fromTo($(".shutter", svg), { y: -370 }, { y: -262, duration: 0.42, ease: "power2.inOut" }, 0.12);
-    tl.to($(".uw--lit", svg), { opacity: 0, duration: 0.02 }, 0.3);
-    tl.to($$(".lamp-in", svg), { opacity: 0.25, duration: 0.04 }, 0.5);
-    tl.to($(".ph-glow", svg), { opacity: 1, attr: { r: 70 }, duration: 0.3 }, 0.55);
-    tl.fromTo(".ticket", { y: 0, yPercent: 140, rotate: 4 }, { y: 0, yPercent: 0, rotate: -3, duration: 0.2, ease: "power3.out" }, 0.38);
-    tl.to(".ticket", { yPercent: -20, autoAlpha: 0, duration: 0.1 }, 0.72);
-    subs(tl, s.el, 0.03, 0.9);
-    tl.to("#esc1 .stage", { autoAlpha: 0, duration: 0.06 }, 0.94);
-
-    // Lluvia
-    var cv = $("#rain"), ctx = cv.getContext("2d"), drops = [], raf = 0, on = false;
-    function size() {
-      var d = Math.min(2, window.devicePixelRatio || 1);
-      cv.width = cv.clientWidth * d; cv.height = cv.clientHeight * d;
-      ctx.setTransform(d, 0, 0, d, 0, 0);
-      drops = [];
-      var n = Math.round((cv.clientWidth * cv.clientHeight) / 9000);
-      for (var i = 0; i < n; i++) drops.push({ x: Math.random() * cv.clientWidth, y: Math.random() * cv.clientHeight, l: 10 + Math.random() * 18, v: 9 + Math.random() * 8, a: 0.08 + Math.random() * 0.22 });
-    }
-    function draw() {
-      ctx.clearRect(0, 0, cv.clientWidth, cv.clientHeight);
-      ctx.lineWidth = 1;
-      for (var i = 0; i < drops.length; i++) {
-        var p = drops[i];
-        ctx.strokeStyle = "rgba(200,220,255," + p.a + ")";
-        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p.x - 2, p.y + p.l); ctx.stroke();
-        p.y += p.v; p.x -= 0.6;
-        if (p.y > cv.clientHeight) { p.y = -p.l; p.x = Math.random() * (cv.clientWidth + 40); }
-      }
-      if (on) raf = requestAnimationFrame(draw);
-    }
-    size();
-    window.addEventListener("resize", size);
-    ScrollTrigger.create({
-      trigger: s.el, start: "top bottom", end: "bottom top",
-      onToggle: function (self) { on = self.isActive; cancelAnimationFrame(raf); if (on) draw(); }
-    });
+    var s = scene("#esc1", 420), tl = s.tl;
+    tl.fromTo("#cam1", { scale: 1 }, { scale: 1.08, transformOrigin: "50% 50%", duration: 1, ease: "power1.inOut" }, 0);
+    scrub(tl, $("#v-salon"), 0, 0.46);
+    tl.fromTo("#v-cama", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.07, ease: "power1.inOut" }, 0.4);
+    scrub(tl, $("#v-cama"), 0.4, 0.55);
+    tl.fromTo("#esc1 .kpi", { autoAlpha: 1, yPercent: 0, y: function () { return window.innerHeight; }, rotate: 3 }, { autoAlpha: 1, yPercent: 0, y: 0, rotate: 0, duration: 0.16, ease: "power3.out" }, 0.56);
+    spark(tl, "#esc1", 0.62);
+    tl.to("#esc1 .kpi", { yPercent: -16, autoAlpha: 0, duration: 0.07 }, 0.86);
+    subs(tl, s.el, 0.03, 0.92);
+    tl.to("#esc1 .stage", { autoAlpha: 0, duration: 0.05 }, 0.95);
   })();
 
   /* ---------- ESCENA 2 · El vídeo ---------- */
   (function () {
-    var s = scene("#esc2", 420), tl = s.tl;
-    var feed = $("#esc2 .feed"), screen = $("#esc2 .screen"), t = $("#esc2 .tap");
-    function far(f) { return function () { var me = $("#esc2 .post--me"); return -(me.offsetTop + me.offsetHeight / 2 - screen.clientHeight * 0.4) * f; }; }
-    tl.fromTo("#esc2 .phone-wrap", { scale: 0.88, yPercent: 8 }, { scale: 1, yPercent: 0, duration: 0.12, ease: "power2.out" }, 0);
-    tl.fromTo(".bigtime", { scale: 0.9 }, { scale: 1.12, duration: 1 }, 0);
-    tl.fromTo(feed, { y: 0 }, { y: far(0.24), duration: 0.08, ease: "power3.out" }, 0.05);
-    tl.to(feed, { y: far(0.5), duration: 0.08, ease: "power3.out" }, 0.15);
-    tl.to(feed, { y: far(0.78), duration: 0.08, ease: "power3.out" }, 0.25);
-    tl.to(feed, { y: far(1), duration: 0.1, ease: "power4.out" }, 0.34);
-    tap(tl, t, "50%", "62%", 0.45);
-    tl.fromTo("#esc2 .reel", { autoAlpha: 0, scale: 0.9 }, { autoAlpha: 1, scale: 1, duration: 0.04, ease: "power2.out" }, 0.46);
-    tl.fromTo("#esc2 .reel img", { scale: 1.15 }, { scale: 1, duration: 0.3 }, 0.46);
-    tl.fromTo("#esc2 .reel__bar i", { scaleX: 0 }, { scaleX: 1, duration: 0.26 }, 0.47);
-    tl.fromTo("#esc2 .reel__copy > *", { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.03, stagger: 0.025, ease: "power2.out" }, 0.5);
-    tl.fromTo("#esc2 .heart-pop", { scale: 0, autoAlpha: 1 }, { scale: 1.15, duration: 0.03, ease: "back.out(3)" }, 0.64);
-    tl.to("#esc2 .heart-pop", { scale: 1.4, autoAlpha: 0, duration: 0.03 }, 0.68);
-    tl.to("#esc2 .ic-heart path", { fill: "#ff4d6a", stroke: "#ff4d6a", duration: 0.01 }, 0.65);
-    tl.to("#esc2 .ic-save path", { fill: "#ffffff", duration: 0.01 }, 0.7);
-    tap(tl, t, "24%", "86%", 0.74);
-    tl.fromTo("#esc2 .profile", { x: 0, xPercent: 105 }, { x: 0, xPercent: 0, duration: 0.05, ease: "power3.out" }, 0.75);
-    tap(tl, t, "38%", "40%", 0.86);
-    tl.to("#esc2 .profile__link", { backgroundColor: "rgba(159,216,255,.22)", duration: 0.02 }, 0.86);
-    tl.to("#esc2 .phone-wrap", { scale: 1.12, duration: 0.08, ease: "power2.in" }, 0.9);
-    subs(tl, s.el, 0.02, 0.9);
-    tl.to("#esc2 .stage", { autoAlpha: 0, duration: 0.05 }, 0.95);
+    var s = scene("#esc2", 470), tl = s.tl;
+    var screen = $("#esc2 .screen"), feed = $("#esc2 .feed"), me = $("#esc2 .post--me"), media = $(".media", me), t = $("#esc2 .tap");
+    // Desplazamiento del feed: f = 1 deja el reel de saul.marketing en el centro de la pantalla
+    function far(f) { return function () { var o = offsetIn(media, feed); return -(feed.offsetTop + o.y + media.offsetHeight / 2 - screen.clientHeight * 0.47) * f; }; }
+    function at(el, fx, fy) {
+      return {
+        x: function () { var o = offsetIn(el, screen); return o.x + el.offsetWidth * (fx === undefined ? 0.5 : fx); },
+        y: function () { var o = offsetIn(el, screen); return o.y + el.offsetHeight * (fy === undefined ? 0.5 : fy); }
+      };
+    }
+    // El móvil sube como si alguien lo cogiera de la mesa
+    tl.fromTo("#cam2", { scale: 1.08 }, { scale: 1, transformOrigin: "50% 50%", duration: 1, ease: "power1.out" }, 0);
+    scrub(tl, $("#v-movil"), 0, 0.2);
+    tl.fromTo("#v-noche", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.07 }, 0.1);
+    tl.fromTo("#esc2 .phone-glow", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.1 }, 0.1);
+    tl.fromTo("#esc2 .phone-wrap", { y: 0, yPercent: 115 }, { y: 0, yPercent: 0, duration: 0.12, ease: "power3.out" }, 0.1);
+    tl.fromTo("#esc2 .phone", { rotateX: 32, rotateY: -16, rotateZ: 7, scale: 0.92 }, { rotateX: 0, rotateY: 0, rotateZ: 0, scale: 1, duration: 0.14, ease: "power2.out" }, 0.1);
+
+    // Lo que pasa dentro de la pantalla
+    var p = gsap.timeline();
+    p.set({}, {}, 1);
+    p.fromTo(feed, { y: 0 }, { y: far(0.22), duration: 0.08, ease: "power3.out" }, 0.04);
+    p.to(feed, { y: far(0.47), duration: 0.08, ease: "power3.out" }, 0.14);
+    p.to(feed, { y: far(0.74), duration: 0.08, ease: "power3.out" }, 0.24);
+    p.to(feed, { y: far(1), duration: 0.1, ease: "power4.out" }, 0.33);
+    var hit = { x: function () { return screen.clientWidth / 2; }, y: function () { return screen.clientHeight * 0.47; } };
+    tap(p, t, hit.x, hit.y, 0.45);
+    p.fromTo("#esc2 .reel", { autoAlpha: 0, scale: 0.92 }, { autoAlpha: 1, scale: 1, duration: 0.04, ease: "power2.out" }, 0.46);
+    p.fromTo("#esc2 .reel img", { scale: 1.16 }, { scale: 1, duration: 0.3 }, 0.46);
+    p.fromTo("#esc2 .reel__bar i", { scaleX: 0 }, { scaleX: 1, duration: 0.27 }, 0.47);
+    p.fromTo("#esc2 .reel__copy > *", { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.03, stagger: 0.025, ease: "power2.out" }, 0.5);
+    p.fromTo("#esc2 .heart-pop", { scale: 0, autoAlpha: 1 }, { scale: 1.15, duration: 0.03, ease: "back.out(3)" }, 0.64);
+    p.to("#esc2 .heart-pop", { scale: 1.4, autoAlpha: 0, duration: 0.03 }, 0.68);
+    p.fromTo("#esc2 .ic-heart", { "--fill": "rgba(255,59,92,0)", color: "#ffffff" }, { "--fill": "#ff3b5c", color: "#ff3b5c", duration: 0.01 }, 0.65);
+    p.fromTo("#esc2 .ic-save", { "--fill": "rgba(255,255,255,0)" }, { "--fill": "#ffffff", duration: 0.01 }, 0.7);
+    var nm = at($("#esc2 .reel__meta b"));
+    tap(p, t, nm.x, nm.y, 0.74);
+    p.fromTo("#esc2 .profile", { x: 0, xPercent: 105 }, { x: 0, xPercent: 0, duration: 0.05, ease: "power3.out" }, 0.75);
+    var lk = at($("#esc2 .profile__link"), 0.55);
+    tap(p, t, lk.x, lk.y, 0.86);
+    p.fromTo("#esc2 .profile__link", { backgroundColor: "rgba(159,216,255,0)" }, { backgroundColor: "rgba(159,216,255,.24)", duration: 0.02 }, 0.86);
+    p.to("#esc2 .phone-wrap", { scale: 1.1, duration: 0.08, ease: "power2.in" }, 0.91);
+    p.duration(0.72);
+    tl.add(p, 0.22);
+    subs(tl, s.el, 0.02, 0.92);
+    tl.to("#esc2 .stage", { autoAlpha: 0, duration: 0.04 }, 0.96);
   })();
 
   /* ---------- ESCENA 3 · La búsqueda ---------- */
   (function () {
     var s = scene("#esc3", 480), tl = s.tl;
-    var lap = $("#esc3 .laptop"), ls = $("#esc3 .lscreen"), stage = $("#esc3 .stage");
-    var q = $("#esc3 .q"), url = $("#esc3 .url__t"), me = $("#esc3 .res--me"), ptr = $("#esc3 .pointer"), clk = $("#esc3 .click");
-    var QUERY = "consultoría para mejorar mi negocio";
+    var sc = $("#esc3 .screen3"), ls = $("#esc3 .lscreen"), q = $("#esc3 .q"), url = $("#esc3 .url__t"), me = $("#esc3 .res--me"), ptr = $("#esc3 .pointer"), clk = $("#esc3 .click");
+    var QUERY = "consultoría para facturar más online";
     url.innerHTML = '<span class="u1">buscar</span><span class="u2" style="display:none">saulpoveda.com</span>';
-    var typing = { n: 0 };
+    var typing = { n: 0 }, shown = -1;
+    gsap.ticker.add(function () { var k = Math.round(typing.n); if (k !== shown) { shown = k; q.textContent = QUERY.slice(0, k); } });
+    function target() { var o = offsetIn(me, ls); return { x: o.x + me.offsetWidth * 0.32, y: o.y + me.offsetHeight * 0.48 }; }
 
-    function target() {
-      var o = offsetIn(me, ls);
-      return { x: o.x + me.offsetWidth * 0.32, y: o.y + me.offsetHeight * 0.48 };
-    }
-    function zoom() {
-      var o = offsetIn(ls, lap);
-      var cx = o.x + ls.offsetWidth / 2, cy = o.y + ls.offsetHeight / 2;
-      var sw = stage.clientWidth, sh = stage.clientHeight;
-      var k = Math.max(sw / ls.offsetWidth, sh / ls.offsetHeight) * 1.04;
-      return { cx: cx, cy: cy, k: k, x: sw / 2 - (lap.offsetLeft + cx), y: sh / 2 - (lap.offsetTop + cy) };
-    }
+    // Plano real: café y portátil a primera hora
+    tl.fromTo("#cam3", { scale: 1 }, { scale: 1.06, transformOrigin: "50% 50%", duration: 0.5, ease: "power1.out" }, 0);
+    scrub(tl, $("#v-cafe"), 0, 0.32);
+    tl.fromTo("#v-cafeblur", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.07 }, 0.27);
+    // La pantalla del portátil
+    gsap.set(sc, { xPercent: -50, yPercent: -50 });
+    tl.fromTo(sc, { autoAlpha: 0, scale: 0.82, y: 40 }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.09, ease: "power3.out" }, 0.3);
+    tl.fromTo("#esc3 .browser", { autoAlpha: 1 }, { autoAlpha: 1, duration: 0.01 }, 0.3);
+    tl.fromTo(typing, { n: 0 }, { n: QUERY.length, duration: 0.15, ease: "none" }, 0.39);
+    tl.fromTo("#esc3 .results", { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.04, ease: "power2.out" }, 0.55);
+    tl.fromTo(ptr, { left: "72%", top: "86%" }, { left: function () { return target().x; }, top: function () { return target().y; }, duration: 0.08, ease: "power2.inOut" }, 0.6);
+    tl.set(clk, { left: function () { return target().x; }, top: function () { return target().y; } }, 0.69);
+    tl.fromTo(clk, { scale: 0.3, autoAlpha: 1 }, { scale: 1.6, autoAlpha: 0, duration: 0.03 }, 0.69);
+    tl.fromTo(me, { backgroundColor: "rgba(255,201,120,.2)" }, { backgroundColor: "rgba(255,201,120,.45)", duration: 0.01 }, 0.69);
+    tl.set("#esc3 .u1", { display: "none" }, 0.7);
+    tl.set("#esc3 .u2", { display: "inline" }, 0.7);
+    tl.fromTo("#esc3 .chrome__load", { scaleX: 0 }, { scaleX: 1, duration: 0.05 }, 0.7);
+    tl.to(ptr, { autoAlpha: 0, duration: 0.02 }, 0.78);
 
-    tl.fromTo("#esc3 .room", { filter: "brightness(.35)" }, { filter: "brightness(1)", duration: 0.3 }, 0);
-    tl.fromTo("#esc3 .beam, #esc3 .dust", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 0.02);
-    tl.fromTo("#esc3 .desk", { filter: "brightness(.4)" }, { filter: "brightness(1)", duration: 0.3 }, 0);
-    tl.fromTo(lap, { yPercent: 6 }, { yPercent: 0, duration: 0.2, ease: "power2.out" }, 0);
-    tl.fromTo("#esc3 .lid", { rotationX: -90 }, { rotationX: -3, duration: 0.18, ease: "power2.out" }, 0.05);
-    tl.fromTo("#esc3 .boot", { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.02 }, 0.23);
-    tl.fromTo("#esc3 .browser", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.02 }, 0.23);
-    tl.fromTo(typing, { n: 0 }, { n: QUERY.length, duration: 0.18, ease: "none" }, 0.28);
-    var shown = -1;
+    /* La web aparece DENTRO del portátil y la cámara entra en la pantalla.
+       La capa "ghost" es una copia exacta del principio de la sección #web:
+       al terminar el zoom ocupa toda la pantalla y la web real, que está justo
+       debajo, toma el relevo sin que se note el cambio. */
+    var web = $("#web"), chrome = $("#esc3 .chrome");
+    var ghost = document.createElement("div");
+    ghost.className = "web web--ghost";
+    ghost.setAttribute("aria-hidden", "true");
+    ghost.inert = true;
+    function fillGhost() {
+      var c = $(".web__in", web).cloneNode(true);
+      $$("[id]", c).forEach(function (n) { n.removeAttribute("id"); });
+      ghost.innerHTML = "";
+      ghost.appendChild(c);
+    }
+    fillGhost();
+    s.el.querySelector(".stage").insertBefore(ghost, $("#esc3 .slate"));
+    // Rectángulo de la web dentro del portátil (sin transformaciones)
+    function R() {
+      return {
+        x: sc.offsetLeft - sc.offsetWidth / 2 + ls.offsetLeft,
+        y: sc.offsetTop - sc.offsetHeight / 2 + ls.offsetTop + chrome.offsetHeight,
+        w: ls.offsetWidth,
+        h: ls.offsetHeight - chrome.offsetHeight,
+        ox: ls.offsetLeft, oy: ls.offsetTop + chrome.offsetHeight
+      };
+    }
+    var zoom = { t: 0 }, lastT = -1, vis = { a: 0 }, lastA = -1, zoomed = false;
+    function render(force) {
+      if (!force && zoom.t === lastT && vis.a === lastA) return;
+      lastT = zoom.t; lastA = vis.a;
+      var r = R(), W = s.el.clientWidth, H = s.el.clientHeight, e = zoom.t;
+      var K = W / r.w;                       // al final, la pantalla ocupa todo el ancho
+      var k = 1 + (K - 1) * e;
+      var x = r.x * (1 - e), y = r.y * (1 - e);
+      var gs = (r.w * k) / W;                // escala de la capa
+      var visH = r.h * k + Math.max(0, H - r.h * K) * e;
+      var clipB = Math.max(0, H - visH / gs);
+      gsap.set(ghost, { x: x, y: y, scale: gs, clipPath: "inset(0px 0px " + clipB.toFixed(1) + "px 0px)", autoAlpha: vis.a });
+      if (e > 0) { zoomed = true; gsap.set(sc, { transformOrigin: r.ox + "px " + r.oy + "px", scale: k, x: x - r.x, y: y - r.y }); }
+      else if (zoomed) { zoomed = false; gsap.set(sc, { transformOrigin: "50% 50%", scale: 1, x: 0, y: 0 }); }
+    }
+    gsap.ticker.add(function () { render(false); });
+    ScrollTrigger.addEventListener("refresh", function () { fillGhost(); render(true); });
+    tl.fromTo(vis, { a: 0 }, { a: 1, duration: 0.03 }, 0.73);
+    // Debajo de la web solo queda su mismo fondo (sin buscador asomando)
+    tl.fromTo("#esc3 .search", { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.01 }, 0.76);
+    tl.fromTo("#esc3 .browser", { backgroundColor: "#f6f5f2" }, { backgroundColor: "#0d0f14", duration: 0.01 }, 0.76);
+    tl.fromTo(zoom, { t: 0 }, { t: 1, duration: 0.15, ease: "power2.inOut" }, 0.8);
+    tl.to("#esc3 .slate", { autoAlpha: 0, duration: 0.04 }, 0.8);
+
+    // La sección #web se superpone al último plano de la escena 3 y solo se
+    // muestra cuando la escena ha terminado: ahí las dos son idénticas.
+    function overlap() { web.style.marginTop = -s.el.offsetHeight + "px"; }
+    overlap();
+    ScrollTrigger.addEventListener("refreshInit", overlap);
+    var shownWeb = null;
     gsap.ticker.add(function () {
-      var k = Math.round(typing.n);
-      if (k !== shown) { shown = k; q.textContent = QUERY.slice(0, k); }
+      var on = window.pageYOffset >= tl.scrollTrigger.end - 1;
+      if (on !== shownWeb) { shownWeb = on; web.style.visibility = on ? "" : "hidden"; }
     });
-    tl.fromTo("#esc3 .results", { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.04, ease: "power2.out" }, 0.48);
-    tl.fromTo(ptr, { left: "72%", top: "86%" }, {
-      left: function () { return target().x; }, top: function () { return target().y; }, duration: 0.08, ease: "power2.inOut"
-    }, 0.54);
-    tl.set(clk, { left: function () { return target().x; }, top: function () { return target().y; } }, 0.63);
-    tl.fromTo(clk, { scale: 0.3, autoAlpha: 1 }, { scale: 1.6, autoAlpha: 0, duration: 0.03 }, 0.63);
-    tl.to(me, { backgroundColor: "rgba(255,201,120,.45)", duration: 0.01 }, 0.63);
-    tl.set("#esc3 .u1", { display: "none" }, 0.64);
-    tl.set("#esc3 .u2", { display: "inline" }, 0.64);
-    tl.fromTo("#esc3 .chrome__load", { scaleX: 0 }, { scaleX: 1, duration: 0.05 }, 0.64);
-    tl.fromTo("#esc3 .mini", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.03 }, 0.69);
-    tl.fromTo("#esc3 .mini > *", { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.03, stagger: 0.015 }, 0.7);
-    tl.to(ptr, { autoAlpha: 0, duration: 0.02 }, 0.72);
-    tl.to("#esc3 .room, #esc3 .desk, #esc3 .mug, #esc3 .notebook, #esc3 .slate", { autoAlpha: 0, duration: 0.1 }, 0.8);
-    tl.to("#esc3 .lid", { rotationX: 0, duration: 0.04 }, 0.78);
-    tl.to(lap, {
-      scale: function () { return zoom().k; },
-      x: function () { return zoom().x; },
-      y: function () { return zoom().y; },
-      transformOrigin: function () { var z = zoom(); return z.cx + "px " + z.cy + "px"; },
-      duration: 0.16, ease: "power3.in"
-    }, 0.78);
-    tl.to("#esc3 .whiteout", { autoAlpha: 1, duration: 0.05 }, 0.93);
     subs(tl, s.el, 0.01, 0.86);
   })();
 
   /* ---------- ESCENA 5 · Tres meses después ---------- */
   (function () {
-    if (!shop5) return;
-    var s = scene("#esc5", 400), tl = s.tl, svg = shop5;
-    tl.fromTo("#esc5 .card3", { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.06 }, 0.08);
-    tl.fromTo("#cam5 .cam-day", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.26 }, 0.16);
-    tl.fromTo("#cam5", { scale: 1.12 }, { scale: 1.02, transformOrigin: "50% 60%", duration: 1, ease: "power1.out" }, 0);
-    tl.fromTo($(".shutter", svg), { y: -262 }, { y: -370, duration: 0.2, ease: "power2.inOut" }, 0.14);
-    var d0 = 0.16, dl = 0.26;
-    tl.to($(".sky-d", svg), { opacity: 1, duration: dl }, d0);
-    tl.to($$(".stars, .city-win, .wet, .refl, .cone, .lamp-glow, .ph-glow", svg), { opacity: 0, duration: dl * 0.6 }, d0);
-    tl.to($(".moon", svg), { attr: { cy: 420 }, opacity: 0, duration: dl }, d0);
-    tl.fromTo($(".sun", svg), { attr: { cy: 360 }, opacity: 0 }, { attr: { cy: 150 }, opacity: 1, duration: dl }, d0 + 0.04);
-    Object.keys(DAY).forEach(function (sel) {
-      var els = $$(sel, svg);
-      if (!els.length) return;
-      var v = DAY[sel], to = { duration: dl };
-      if (v.fill) to.fill = v.fill;
-      if (v.stroke) to.stroke = v.stroke;
-      if (v.opacity !== undefined) to.opacity = v.opacity;
-      tl.to(els, to, d0);
-    });
-    tl.to($$(".lamp-in", svg), { opacity: 0.8, duration: 0.05 }, d0);
-    tl.to($(".door-t", svg), { opacity: 0, duration: 0.02 }, 0.34);
-    tl.to($(".door-t2", svg), { opacity: 1, duration: 0.02 }, 0.35);
-    tl.to($(".crowd", svg), { opacity: 1, duration: 0.02 }, 0.36);
-    var w = $$(".walker", svg);
-    tl.fromTo(w[0], { x: 1720 }, { x: 1205, duration: 0.3, ease: "power1.out" }, 0.36);
-    tl.fromTo(w[1], { x: -120 }, { x: 700, duration: 0.34, ease: "power1.out" }, 0.4);
-    tl.fromTo(w[2], { x: 1900 }, { x: 1420, duration: 0.3, ease: "power1.out" }, 0.46);
-    tl.to($(".clients", svg), { opacity: 1, duration: 0.06 }, 0.42);
-    tl.fromTo("#esc5 .note", { autoAlpha: 0, y: -18, scale: 0.96 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.05, stagger: 0.07, ease: "back.out(1.6)" }, 0.5);
-    tl.fromTo("#esc5 .chart", { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.05 }, 0.7);
-    var line = $("#esc5 .chart__line");
-    var L = 420;
-    line.style.strokeDasharray = L;
-    tl.fromTo(line, { strokeDashoffset: L }, { strokeDashoffset: 0, duration: 0.14 }, 0.72);
-    tl.fromTo("#esc5 .chart__area", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.1 }, 0.78);
-    subs(tl, s.el, 0.02, 0.92);
+    var s = scene("#esc5", 440), tl = s.tl;
+    tl.fromTo("#esc5 .card3", { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.07 }, 0.05);
+    tl.fromTo("#cam5", { scale: 1.12 }, { scale: 1, transformOrigin: "50% 50%", duration: 1, ease: "power1.out" }, 0);
+    scrub(tl, $("#v-cinta"), 0, 0.5);
+    tl.fromTo("#esc5 .loc", { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.05 }, 0.12);
+    tl.fromTo("#esc5 .note", { autoAlpha: 0, y: -18, scale: 0.96 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.04, stagger: 0.05, ease: "back.out(1.6)" }, 0.32);
+    tl.to("#esc5 .note", { autoAlpha: 0, y: -10, duration: 0.03, stagger: 0.01 }, 0.5);
+    tl.fromTo("#v-equipo", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.06, ease: "power1.inOut" }, 0.46);
+    scrub(tl, $("#v-equipo"), 0.46, 0.52);
+    tl.fromTo("#esc5 .kpi", { autoAlpha: 1, yPercent: 0, y: function () { return window.innerHeight; }, rotate: 3 }, { autoAlpha: 1, yPercent: 0, y: 0, rotate: 0, duration: 0.14, ease: "power3.out" }, 0.54);
+    spark(tl, "#esc5", 0.6);
+    tl.to("#esc5 .kpi", { yPercent: -16, autoAlpha: 0, duration: 0.06 }, 0.76);
+    subs(tl, s.el, 0.1, 0.94);
     tl.to("#esc5 .stage", { autoAlpha: 0, duration: 0.05 }, 0.95);
   })();
+
 
   /* ---------- Tira de rodaje horizontal ---------- */
   (function () {

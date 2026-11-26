@@ -1,0 +1,64 @@
+[
+ {
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "page",
+  "shape": "premiere-reels",
+  "theme": "custom",
+  "axes": "dark/grotesk-sans/cool",
+  "hero": "opening titles, head left, framed photo right",
+  "nav": "edge-aligned",
+  "footer": "index-columns",
+  "imagery": "photographs, user 3, product sample 2",
+  "photos": [],
+  "entry": "letterbox",
+  "fingerprint": "statement-lit,pinned-reel,bento,compare-slider,pinned-diptych,rows,form",
+  "sections": [
+   "hero",
+   "statement",
+   "reel",
+   "bento",
+   "compare",
+   "pinned",
+   "faq",
+   "form",
+   "footer"
+  ],
+  "signature": "letterbox opening and before/after slider",
+  "waived": [
+   "47c"
+  ],
+  "prompt": "consultor de IA y webs, técnico premium, Geist, grafito, azul petróleo, efectos de cine",
+  "date": "2026-11-22"
+ },
+ {
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "page",
+  "shape": "bento-grid",
+  "theme": "spore",
+  "axes": "dark/roman-serif/warm",
+  "hero": "poster-half-bleed",
+  "nav": "masthead",
+  "footer": "index-columns",
+  "imagery": "photographs, user 3, product sample 2",
+  "photos": [],
+  "entry": "letterbox",
+  "fingerprint": "statement,rows,bento,switcher,pinned,rows,form",
+  "sections": [
+   "hero",
+   "statement",
+   "rows",
+   "bento",
+   "switcher",
+   "pinned",
+   "faq-rows",
+   "form",
+   "footer"
+  ],
+  "signature": "letterbox bars parting over the lit desk",
+  "waived": [],
+  "prompt": "consultor de IA y webs para negocios locales en España, experiencia cinematográfica",
+  "date": "2026-11-21"
+ }
+]
